@@ -1,7 +1,3 @@
-<!-- Banner principal -->
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/91565440/195566376-8b1ec558-3e43-49ac-9a63-896c217f3021.png" alt="Banner de Estudos" width="100%" />
-</p>
 
 <h1 align="center">Olá! 👋 Eu sou o Wemerson Bastos</h1>
 <h3 align="center">🎓 Estudante de Programação | 💻 Foco em Desenvolvimento Web e Software</h3>
