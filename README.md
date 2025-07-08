@@ -101,7 +101,7 @@ Sou um estudante apaixonado por tecnologia e desenvolvimento de software. Tenho 
 ### 📫 Contato
 
 📍 Brasil  
-📧 Email: **seuemail@exemplo.com**  
+📧 Email: **bastos.weeme@gmail.com**  
 💼 LinkedIn: [www.linkedin.com/in/wemerson-bastos-129451252)  
 
 ---
