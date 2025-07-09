@@ -32,6 +32,7 @@ Sou Professor Pedagogo em transição para a área de Tecnologia da Informação
 ### 📌 Em aprendizado constante
 
 🧠 Desenvolvedor Front-End Júnior em desenvolvimento.
+
 🎯 Abaixo, acompanhe meu progresso por área de conhecimento:
 
 ---
