@@ -39,7 +39,7 @@ Sou um estudante apaixonado por tecnologia e desenvolvimento de software. Tenho 
 
 ### 📌 Em aprendizado constante
 
-🧠 Desenvolvedor Front-End Júnior focado em construir interfaces modernas e responsivas com tecnologias atuais.  
+🧠 Desenvolvedor Front-End Júnior em desenvolvimento.
 🎯 Abaixo, acompanhe meu progresso por área de conhecimento:
 
 ---
