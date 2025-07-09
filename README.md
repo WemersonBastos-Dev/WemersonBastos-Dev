@@ -1,6 +1,6 @@
 
 <h1 align="center">Olá! 👋 Eu sou o Wemerson Bastos</h1>
-<h3 align="center">🎓 Estudante de Programação | 💻 Foco em Desenvolvimento Web</h3>
+<h3 align="center">🎓 Estudante de Programação | 💻 Foco em Desenvolvimento Front-end</h3>
 
 ---
 
