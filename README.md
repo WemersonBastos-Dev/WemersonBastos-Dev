@@ -57,7 +57,7 @@ Sou Professor Pedagogo em transição para a área de Tecnologia da Informação
 
 ---
 
-#### 🧰 Principais Ferramentas e Tecnologias 
+#### 🧰 Principais Ferramentas e Tecnologias:
 
 <div align="center">
 
