@@ -6,7 +6,33 @@
 
 ### 🚀 Sobre mim
 
-Sou um estudante apaixonado por tecnologia e desenvolvimento de software. Tenho dedicado meus estudos ao aprendizado contínuo de linguagens de programação, frameworks e boas práticas de desenvolvimento. Meu objetivo é evoluir profissionalmente e contribuir com projetos que transformem ideias em soluções reais.
+💻 Sobre Mim
+Sou Professor Pedagogo em transição para a área de Tecnologia da Informação, com foco em Desenvolvimento Front-End. Desde 2018, atuo na rede municipal de Tauá, onde desenvolvi habilidades fundamentais como comunicação clara, liderança, criatividade, organização, empatia e resolução de problemas — competências altamente valorizadas também no universo da tecnologia.
+
+📲 Paralelamente à Educação, atuo como Designer de Social Media, Social Media Strategist, Vídeo Maker e Mentor de equipes em Marketing Digital. Essas experiências ampliaram minha visão sobre comportamento de público, estratégias digitais, análise de dados e soluções baseadas na experiência do usuário.
+
+👨‍💻 Atualmente, estudo programação diariamente pela plataforma DIO – Digital Innovation One, com foco em Desenvolvimento Web e tecnologias modernas do ecossistema front-end, incluindo:
+
+HTML5, CSS3, JavaScript (ES6+)
+
+React, TypeScript, Tailwind CSS
+
+Git & GitHub, APIs REST, Vite e Styled-components
+
+💡 No campo das soft skills, destaco:
+
+Proatividade e autogestão
+
+Facilidade de comunicação e trabalho em equipe
+
+Aprendizado contínuo e adaptabilidade
+
+Foco em soluções, usabilidade e entrega de valor
+
+🚀 Sou movido por desafios e pela convicção de que a tecnologia tem o poder de transformar realidades. Cada linha de código escrita representa um passo consciente rumo ao futuro que escolhi construir — unindo conhecimento, propósito e inovação.
+
+
+
 
 ---
 
