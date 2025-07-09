@@ -17,13 +17,11 @@ Sou Professor Pedagogo em transição para a área de Tecnologia da Informação
 
 💡 No campo das soft skills, destaco:
 
-Proatividade e autogestão
+🧠 Proatividade e autogestão
+🗣️ Facilidade de comunicação e trabalho em equipe
+📚 Aprendizado contínuo e adaptabilidade
+🎯 Foco em soluções, usabilidade e entrega de valor
 
-Facilidade de comunicação e trabalho em equipe
-
-Aprendizado contínuo e adaptabilidade
-
-Foco em soluções, usabilidade e entrega de valor
 
 🚀 Sou movido por desafios e pela convicção de que a tecnologia tem o poder de transformar realidades. Cada linha de código escrita representa um passo consciente rumo ao futuro que escolhi construir — unindo conhecimento, propósito e inovação.
 
