@@ -46,42 +46,22 @@ Sou um estudante apaixonado por tecnologia e desenvolvimento de software. Tenho 
 
 #### ✅ Checklist de Aprendizado
 
-| Tecnologia/Conceito                    | Status          | Observações                                         |
-| -------------------------------------- | --------------- | --------------------------------------------------- |
-| Acessibilidade (A11y) e Semântica Web  | 🟨 Em progresso | Práticas para melhorar experiência do usuário       |
-| Angular                                | 🟨 Em progresso | Estrutura baseada em módulos, TypeScript            |
-| Babel                                  | 🟨 Em progresso | Transpilação de JS moderno para navegadores antigos |
-| Boas práticas e organização de código  | ✅ Concluído     | Nomenclatura, reaproveitamento, DRY/KISS            |
-| Bootstrap                              | 🟨 Em progresso | Sistema de grid e componentes prontos               |
-| CI/CD com GitHub Actions               | 🟨 Em progresso | Automatização de deploy e testes                    |
-| Consumo de APIs REST                   | 🟨 Em progresso | Fetch API e Axios em aplicações React               |
-| CSS3, Flexbox e Grid                   | 🟨 Em progresso | Layouts responsivos, mobile first                   |
-| Deploy com Vercel / Netlify / AWS      | 🟨 Em progresso | Hospedagem de aplicações front-end                  |
-| Design com Figma                       | 🟨 Em progresso | Interpretação de protótipos e componentes UI        |
-| Docker                                 | 🟨 Em progresso | Containerização de aplicações front e back          |
-| ESLint e Prettier                      | 🟨 Em progresso | Padronização e análise de código                    |
-| Git e GitHub                           | ✅ Concluído     | Versionamento, branches, pull requests              |
-| GraphQL + Apollo Client                | 🟨 Em progresso | Consultas, mutations e cache                        |
-| HTML5 e semântica                      | 🟨 Em progresso | Domínio de tags, estrutura e acessibilidade básica  |
-| JavaScript (ES6+)                      | ✅ Concluído     | Manipulação de DOM, eventos, funções                |
-| Jest / React Testing Library / Cypress | 🟨 Em progresso | Testes unitários e E2E                              |
-| MongoDB                                | 🟨 Em progresso | Estrutura de documentos e consultas NoSQL           |
-| Next.js                                | 🟨 Em progresso | SSR, SSG, Rotas dinâmicas, API routes               |
-| Node.js + Express                      | 🟨 Em progresso | Criação de APIs, middlewares, roteamento            |
-| NPM / Yarn / pnpm                      | 🟨 Em progresso | Gerenciamento de dependências                       |
-| PostgreSQL / MySQL                     | 🟨 Em progresso | SQL básico, criação de tabelas, relações            |
-| Prisma / TypeORM / Sequelize           | 🟨 Em progresso | ORM para integração com bancos de dados             |
-| Python (FastAPI / Flask)               | 🟨 Em progresso | Construção de APIs REST com Python                  |
-| React (JSX, Props, State, Hooks)       | 🟨 Em progresso | Componentização, useState, useEffect                |
-| Responsividade com Media Queries       | 🟨 Em progresso | Adaptação a diferentes telas                        |
-| SASS / SCSS                            | 🟨 Em progresso | Variáveis, mixins, nesting                          |
-| Storybook                              | 🟨 Em progresso | Documentação visual de componentes UI               |
-| Styled-components / Emotion            | 🟨 Em progresso | CSS-in-JS no React                                  |
-| Swagger / OpenAPI                      | 🟨 Em progresso | Documentação interativa de APIs                     |
-| Tailwind CSS                           | 🟨 Em progresso | Utility-first, responsividade e dark mode           |
-| TypeScript                             | 🟨 Em progresso | Tipagem estática, interfaces, uso com React/Node    |
-| Vue.js                                 | 🟨 Em progresso | Conceitos básicos e reatividade                     |
-| Webpack / Vite / Parcel                | 🟨 Em progresso | Bundlers, hot reload, configuração de ambiente      |
+| Tecnologia/Conceito              | Status          | Observações                                              |
+| -------------------------------- | --------------- | -------------------------------------------------------- |
+| HTML5 e Semântica                | 🟨 Em progresso | Estruturação da página, tags semânticas e acessibilidade |
+| CSS3, Flexbox e Grid             | 🟨 Em progresso | Estilização e layout responsivo                          |
+| Responsividade com Media Queries | 🟨 Em progresso | Adaptação para diferentes tamanhos de tela               |
+| JavaScript (ES6+)                | ✅ Concluído     | Sintaxe moderna, DOM, funções, eventos                   |
+| Git e GitHub                     | ✅ Concluído     | Versionamento de código, branches, commits e PRs         |
+| React (JSX, Props, State, Hooks) | 🟨 Em progresso | Componentização, gerenciamento de estado                 |
+| TypeScript                       | 🟨 Em progresso | Tipagem estática, integração com React                   |
+| Consumo de APIs REST             | 🟨 Em progresso | Fetch, Axios, integração com back-end                    |
+| Tailwind CSS                     | 🟨 Em progresso | Estilização rápida com classes utilitárias               |
+| Styled-components / Emotion      | 🟨 Em progresso | CSS-in-JS moderno usado com React                        |
+| ESLint e Prettier                | 🟨 Em progresso | Padrões de código e organização                          |
+| NPM / Yarn / pnpm                | 🟨 Em progresso | Gerenciadores de pacotes e scripts                       |
+| Vite / Webpack                   | 🟨 Em progresso | Ferramentas para bundling e ambiente de desenvolvimento  |
+| Deploy com Vercel / Netlify      | 🟨 Em progresso | Hospedagem de projetos front-end com integração contínua |
 
 ---
 
