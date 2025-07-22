@@ -42,7 +42,7 @@ Sou Professor Pedagogo em transição para a área de Tecnologia da Informação
 | Tecnologia/Conceito              | Status          | Observações                                              |
 | -------------------------------- | --------------- | -------------------------------------------------------- |
 | HTML5 e Semântica                | ✅ Concluído | Estruturação da página, tags semânticas e acessibilidade |
-| CSS3, Flexbox e Grid             | 🟨 Em progresso | Estilização e layout responsivo                          |
+| CSS3, Flexbox e Grid             | ✅ Concluído     | Estilização e layout responsivo                          |
 | Responsividade com Media Queries | 🟨 Em progresso | Adaptação para diferentes tamanhos de tela               |
 | JavaScript (ES6+)                | ✅ Concluído     | Sintaxe moderna, DOM, funções, eventos                   |
 | Git e GitHub                     | ✅ Concluído     | Versionamento de código, branches, commits e PRs         |
