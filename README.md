@@ -3,9 +3,9 @@
 ![Banner](https://i.ibb.co/1QwJxJr/banner-tecnologia.jpg)
 
 ## 📌 Sobre Mim  
-Sou **Professor Pedagogo** que alia **Educação e Tecnologia** para desenvolver soluções inovadoras que contribuam para o ensino-aprendizagem.  
+Sou **Professor Pedagogo** em transição para **Tecnologia da Informação**, com foco em **Desenvolvimento Web**, **Machine Learning** e **Tecnologias Educacionais**.  
 Atuo desde 2018 na rede municipal de Tauá-CE e, atualmente, sou **Superintendente da SME de Tauá**.  
-Minha missão é criar ferramentas digitais e metodologias ativas que transformem vidas.  
+Minha missão é **unir educação e tecnologia** para criar soluções inovadoras que transformem vidas.  
 
 💡 *"Cada linha de código que escrevo é um passo rumo ao futuro que escolhi construir — unindo conhecimento, propósito e inovação."*  
 
@@ -60,23 +60,6 @@ Minha missão é criar ferramentas digitais e metodologias ativas que transforme
 - Acompanhamento pedagógico e administrativo  
 
 ![Leadership](https://i.ibb.co/qxP58B1/leadership.jpg)
-
----
-
-## 📜 Cursos e Formações Complementares  
-
-- **Formação Continuada em Educação Infantil** – SME Tauá  
-- **Formação em Alfabetização e Letramento** – SME Tauá  
-- **Formação em Educação Especial e Inclusiva** – SME Tauá  
-- **Gestão Democrática e Participativa na Escola** – MEC  
-- **Metodologias Ativas e Ensino Híbrido** – Google for Education  
-- **Psicomotricidade na Educação Básica** – Plataforma Lattes  
-- **Tecnologias Digitais Aplicadas à Educação** – AVAMEC/MEC  
-- **Avaliação Educacional e da Aprendizagem** – SME Tauá  
-- **Educação Socioemocional** – Instituto Ayrton Senna  
-- **Planejamento e Gestão Escolar** – SME Tauá  
-- **Educação Ambiental e Sustentabilidade** – Plataforma Lattes  
-- **Formação de Gestores e Supervisores Escolares** – SME Tauá  
 
 ---
 
