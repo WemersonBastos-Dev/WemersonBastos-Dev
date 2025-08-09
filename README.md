@@ -17,18 +17,14 @@ Acredito que o futuro da educação está na capacidade de integrar práticas pe
 ### 💻 Desenvolvimento Web  
 - HTML, CSS, JavaScript...
 - No-code
-- UX/UI  
-
-![Web Development](https://raw.githubusercontent.com/github/explore/main/topics/web-development/web-development.png)
-
+- UX/UI
+  
 ---
 
 ### 🤖 Machine Learning Engineer  
 - Fundamentos de IA e aprendizado de máquina  
 - Modelagem e análise de dados  
 - Aplicações educacionais inteligentes  
-
-![AI](https://raw.githubusercontent.com/github/explore/main/topics/machine-learning/machine-learning.png)
 
 ---
 
@@ -37,8 +33,6 @@ Acredito que o futuro da educação está na capacidade de integrar práticas pe
 - Uso de tecnologias para engajamento e personalização  
 - Adequação à BNCC e metodologias ativas  
 
-![Education Tech](https://raw.githubusercontent.com/github/explore/main/topics/education/education.png)
-
 ---
 
 ### 🏢 Pedagogo Empresarial  
@@ -46,16 +40,12 @@ Acredito que o futuro da educação está na capacidade de integrar práticas pe
 - Desenvolvimento de equipes  
 - Gestão de aprendizagem organizacional  
 
-![Corporate Training](https://raw.githubusercontent.com/github/explore/main/topics/business/business.png)
-
 ---
 
 ### 📚 Pedagogo Especializado  
 - Alfabetização e letramento  
 - Psicomotricidade e desenvolvimento humano  
 - Educação inclusiva e recursos digitais  
-
-![Special Education](https://raw.githubusercontent.com/github/explore/main/topics/reading/reading.png)
 
 ---
 
@@ -80,8 +70,6 @@ Acredito que o futuro da educação está na capacidade de integrar práticas pe
 - Gestão de políticas públicas educacionais  
 - Planejamento estratégico e inovação  
 - Acompanhamento pedagógico e administrativo  
-
-![Leadership](https://raw.githubusercontent.com/github/explore/main/topics/leadership/leadership.png)
 
 ---
 
