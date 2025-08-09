@@ -1,7 +1,5 @@
 # 👨‍💻 Wemerson Bastos Evangelista
 
-![Banner](https://i.ibb.co/1QwJxJr/banner-tecnologia.jpg)
-
 ## 📌 Sobre Mim  
 Sou **Professor Pedagogo Especialista** com expertise em **Tecnologia da Informação**, atuando nas áreas de **Desenvolvimento Web, Machine Learning e Tecnologias Educacionais**.
 Desde 2018, faço parte da rede municipal de ensino de Tauá-CE e, atualmente, sou Superintendente da SME de Tauá.
