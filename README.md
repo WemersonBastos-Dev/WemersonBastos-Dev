@@ -1,124 +1,97 @@
+# 👨‍💻 Wemerson Bastos Evangelista
 
-<h1 align="center">Olá! 👋 Eu sou o Wemerson Bastos</h1>
-<h3 align="center">👨‍💻 Desenvolvedor  Educacional | Desenvolvedor Web | Machine Learning Engineer | Front-end Júnior...
-🚀 Em constante evolução | #CodeEveryday</h3>
+![Banner](https://i.ibb.co/1QwJxJr/banner-tecnologia.jpg)
 
----
+## 📌 Sobre Mim  
+Sou **Professor Pedagogo** que alia **Educação e Tecnologia** para desenvolver soluções inovadoras que contribuam para o ensino-aprendizagem.  
+Atuo desde 2018 na rede municipal de Tauá-CE e, atualmente, sou **Superintendente da SME de Tauá**.  
+Minha missão é criar ferramentas digitais e metodologias ativas que transformem vidas.  
 
-### 🚀 Sobre mim
-
-
-Sou Professor Pedagogo em transição para a área de Tecnologia da Informação, com foco em Desenvolvimento Front-End. Desde 2018, atuo na rede municipal de Tauá, onde desenvolvi habilidades fundamentais como comunicação clara, liderança, criatividade, organização, empatia e resolução de problemas — competências altamente valorizadas também no universo da tecnologia.
-
-📲 Paralelamente à Educação, atuei como Designer de Social Media, Social Media Strategist, Vídeo Maker e Mentor de equipes em Marketing Digital. Essas experiências ampliaram minha visão sobre comportamento de público, estratégias digitais, análise de dados e soluções baseadas na experiência do usuário.
-
-👨‍💻 Atualmente, estudo programação diariamente pela plataforma DIO – Digital Innovation One, com foco em Desenvolvimento Web, Machine Learning Engineer e tecnologias modernas do ecossistema front-end, incluindo:
-
-<p align="left"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="40" height="40" alt="HTML5"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="40" height="40" alt="CSS3"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="40" height="40" alt="JavaScript"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="40" height="40" alt="TypeScript"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="40" height="40" alt="React"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="40" height="40" alt="Git"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="40" height="40" alt="GitHub"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vite/vite-original.svg" width="40" height="40" alt="Vite"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" width="40" height="40" alt="NPM"/> </p>
-
-💡 No campo das soft skills, destaco:
-
-🧠 Proatividade e autogestão
-🗣️ Facilidade de comunicação e trabalho em equipe
-📚 Aprendizado contínuo e adaptabilidade
-🎯 Foco em soluções, usabilidade e entrega de valor
-
-
-🚀 Sou movido por desafios e pela convicção de que a tecnologia tem o poder de transformar realidades. Cada linha de código escrita representa um passo consciente rumo ao futuro que escolhi construir — unindo conhecimento, propósito e inovação.
-
+💡 *"Cada linha de código que escrevo é um passo rumo ao futuro que escolhi construir — unindo conhecimento, propósito e inovação."*  
 
 ---
 
+## 🛠️ Competências Técnicas
 
-### 📌 Em aprendizado constante!
+### 💻 Desenvolvimento Web  
+- HTML, CSS, JavaScript, Python, C#, C++  
+- Frameworks e bibliotecas front-end  
+- Desenvolvimento responsivo e acessível  
 
-🎯 Abaixo, acompanhe meu progresso por área de conhecimento:
-
----
-
-#### ✅ Checklist de Aprendizado
-
-| Tecnologia/Conceito              | Status          | Observações                                              |
-| -------------------------------- | --------------- | -------------------------------------------------------- |
-| HTML5 e Semântica                | ✅ Concluído | Estruturação da página, tags semânticas e acessibilidade |
-| CSS3, Flexbox e Grid             | ✅ Concluído     | Estilização e layout responsivo                          |
-| Responsividade com Media Queries | 🟨 Em progresso | Adaptação para diferentes tamanhos de tela               |
-| JavaScript (ES6+)                | ✅ Concluído     | Sintaxe moderna, DOM, funções, eventos                   |
-| Git e GitHub                     | ✅ Concluído     | Versionamento de código, branches, commits e PRs         |
-| React (JSX, Props, State, Hooks) | 🟨 Em progresso | Componentização, gerenciamento de estado                 |
-| TypeScript                       | 🟨 Em progresso | Tipagem estática, integração com React                   |
-| Consumo de APIs REST             | 🟨 Em progresso | Fetch, Axios, integração com back-end                    |
-| Tailwind CSS                     | 🟨 Em progresso | Estilização rápida com classes utilitárias               |
-| Styled-components / Emotion      | 🟨 Em progresso | CSS-in-JS moderno usado com React                        |
-| ESLint e Prettier                | 🟨 Em progresso | Padrões de código e organização                          |
-| NPM / Yarn / pnpm                | 🟨 Em progresso | Gerenciadores de pacotes e scripts                       |
-| Vite / Webpack                   | 🟨 Em progresso | Ferramentas para bundling e ambiente de desenvolvimento  |
-| Deploy com Vercel / Netlify      | 🟨 Em progresso | Hospedagem de projetos front-end com integração contínua |
+![Web Development](https://i.ibb.co/9rj7hZp/web-dev.jpg)
 
 ---
 
-#### 🧰 Principais Ferramentas e Tecnologias:
+### 🤖 Machine Learning Engineer  
+- Fundamentos de IA e aprendizado de máquina  
+- Modelagem e análise de dados  
+- Aplicações educacionais inteligentes  
 
-<div align="center">
-
-<table>
-  <tr>
-    <td align="center">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="40" /><br/>
-      <b>HTML5</b>
-    </td>
-    <td align="center">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="40" /><br/>
-      <b>CSS3</b>
-    </td>
-    <td align="center">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="40" /><br/>
-      <b>JavaScript</b>
-    </td>
-    <td align="center">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="40" /><br/>
-      <b>React</b>
-    </td>
-    <td align="center">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="40" /><br/>
-      <b>Git</b>
-    </td>
-    <td align="center">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="40" /><br/>
-      <b>GitHub</b>
-    </td>
-    <td align="center">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" width="40" /><br/>
-      <b>VS Code</b>
-    </td>
-  </tr>
-</table>
-
-</div>
+![AI](https://i.ibb.co/WcTx1Sr/ai-ml.jpg)
 
 ---
 
-### 📈 GitHub Stats
+### 🎓 Desenvolvedor Educacional  
+- Criação de plataformas e jogos educacionais  
+- Uso de tecnologias para engajamento e personalização  
+- Adequação à BNCC e metodologias ativas  
 
-<p align="left">
-  <img src="https://github-readme-stats.vercel.app/api?username=WemersonBastos-Dev&show_icons=true&theme=tokyonight" alt="Wemerson GitHub Stats"/>
-</p>
-
----
-
-### 📫 Contato
-
-📍 Brasil  
-📧 Email: **bastos.weeme@gmail.com**  
-💼 LinkedIn: [www.linkedin.com/in/wemerson-bastos-129451252)  
+![Education Tech](https://i.ibb.co/vPsYzLt/edtech.jpg)
 
 ---
 
-### 🎯 Objetivo
-
-> **"Aprender todos os dias, evoluir sempre e colaborar com soluções inteligentes que impactem positivamente o mundo."**
+### 🏢 Pedagogo Empresarial  
+- Treinamentos corporativos  
+- Desenvolvimento de equipes  
+- Gestão de aprendizagem organizacional  
 
 ---
 
-⭐ Sinta-se à vontade para explorar meus repositórios e acompanhar minha evolução!
+### 📚 Pedagogo Especializado  
+- Alfabetização e letramento  
+- Psicomotricidade e desenvolvimento humano  
+- Educação inclusiva e recursos digitais  
 
+---
+
+### 🏛️ Superintendente da SME de Tauá  
+- Gestão de políticas públicas educacionais  
+- Planejamento estratégico e inovação  
+- Acompanhamento pedagógico e administrativo  
+
+![Leadership](https://i.ibb.co/qxP58B1/leadership.jpg)
+
+---
+
+## 📜 Cursos e Formações Complementares  
+
+- **Formação Continuada em Educação Infantil** – SME Tauá  
+- **Formação em Alfabetização e Letramento** – SME Tauá  
+- **Formação em Educação Especial e Inclusiva** – SME Tauá  
+- **Gestão Democrática e Participativa na Escola** – MEC  
+- **Metodologias Ativas e Ensino Híbrido** – Google for Education  
+- **Psicomotricidade na Educação Básica** – Plataforma Lattes  
+- **Tecnologias Digitais Aplicadas à Educação** – AVAMEC/MEC  
+- **Avaliação Educacional e da Aprendizagem** – SME Tauá  
+- **Educação Socioemocional** – Instituto Ayrton Senna  
+- **Planejamento e Gestão Escolar** – SME Tauá  
+- **Educação Ambiental e Sustentabilidade** – Plataforma Lattes  
+- **Formação de Gestores e Supervisores Escolares** – SME Tauá  
+
+---
+
+## 🌍 Idiomas  
+- 🇧🇷 Português (Nativo)  
+- 🇺🇸 Inglês (Básico)  
+- 🇪🇸 Espanhol (Intermediário)  
+
+---
+
+## 📫 Contato  
+- **E-mail:** bastos.weeme@gmail.com  
+- **Telefone:** (88) 99720-4035  
+- **LinkedIn:** [Meu Perfil](https://www.linkedin.com/in/wemerson-bastos-129451252)  
+
+---
+
+💬 *Aberto a colaborações e projetos que envolvam tecnologia, educação e impacto social.*  
