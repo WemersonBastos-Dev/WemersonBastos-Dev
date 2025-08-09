@@ -1,6 +1,7 @@
 
 <h1 align="center">Olá! 👋 Eu sou o Wemerson Bastos</h1>
-<h3 align="center">🎓 Estudante de Programação | 💻 Foco em Desenvolvimento Front-end</h3>
+<h3 align="center">👨‍💻 Desenvolvedor  Educacional | Desenvolvedor Web | Machine Learning Engineer | Front-end Júnior...
+🚀 Em constante evolução | #CodeEveryday</h3>
 
 ---
 
@@ -11,7 +12,7 @@ Sou Professor Pedagogo em transição para a área de Tecnologia da Informação
 
 📲 Paralelamente à Educação, atuo como Designer de Social Media, Social Media Strategist, Vídeo Maker e Mentor de equipes em Marketing Digital. Essas experiências ampliaram minha visão sobre comportamento de público, estratégias digitais, análise de dados e soluções baseadas na experiência do usuário.
 
-👨‍💻 Atualmente, estudo programação diariamente pela plataforma DIO – Digital Innovation One, com foco em Desenvolvimento Web e tecnologias modernas do ecossistema front-end, incluindo:
+👨‍💻 Atualmente, estudo programação diariamente pela plataforma DIO – Digital Innovation One, com foco em Desenvolvimento Web, Machine Learning Engineer e tecnologias modernas do ecossistema front-end, incluindo:
 
 <p align="left"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="40" height="40" alt="HTML5"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="40" height="40" alt="CSS3"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="40" height="40" alt="JavaScript"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" width="40" height="40" alt="TypeScript"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="40" height="40" alt="React"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="40" height="40" alt="Git"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="40" height="40" alt="GitHub"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vite/vite-original.svg" width="40" height="40" alt="Vite"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" width="40" height="40" alt="NPM"/> </p>
 
