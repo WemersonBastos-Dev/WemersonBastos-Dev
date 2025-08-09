@@ -1,10 +1,10 @@
 # 👨‍💻 Wemerson Bastos Evangelista
 
 ## 📌 Sobre Mim  
-Sou **Professor Pedagogo Especialista** com expertise em **Tecnologia da Informação**, atuando nas áreas de **Desenvolvimento Web, Machine Learning e Tecnologias Educacionais**.
-Desde 2018, faço parte da rede municipal de ensino de Tauá-CE e, atualmente, sou Superintendente da SME de Tauá.
+Sou **Professor Pedagogo Especialista** com expertise em **Tecnologia da Informação**, atuando nas áreas de **Desenvolvimento Web, Machine Learning e Tecnologias Educacionais**.  
+Desde 2018, faço parte da rede municipal de ensino de Tauá-CE e, atualmente, sou **Superintendente da SME de Tauá**.
 
-Minha trajetória é guiada por um propósito claro: construir **pontes entre a educação e a tecnologia, criando soluções inteligentes** que ampliem o alcance do conhecimento, personalizem o aprendizado e tornem o processo educacional mais inclusivo, dinâmico e eficaz.
+Minha trajetória é guiada por um propósito claro: construir **pontes entre a educação e a tecnologia**, criando soluções inteligentes que ampliem o alcance do conhecimento, personalizem o aprendizado e tornem o processo educacional mais inclusivo, dinâmico e eficaz.
 
 Acredito que o futuro da educação está na capacidade de integrar práticas pedagógicas sólidas com recursos tecnológicos de ponta, transformando salas de aula, treinamentos e ambientes corporativos em espaços vivos de inovação e impacto social.
 
@@ -16,10 +16,10 @@ Acredito que o futuro da educação está na capacidade de integrar práticas pe
 
 ### 💻 Desenvolvimento Web  
 - HTML, CSS, JavaScript...
-- No-code;
-- UX/UI
+- No-code
+- UX/UI  
 
-![Web Development](https://i.ibb.co/9rj7hZp/web-dev.jpg)
+![Web Development](https://raw.githubusercontent.com/github/explore/main/topics/web-development/web-development.png)
 
 ---
 
@@ -28,7 +28,7 @@ Acredito que o futuro da educação está na capacidade de integrar práticas pe
 - Modelagem e análise de dados  
 - Aplicações educacionais inteligentes  
 
-![AI](https://i.ibb.co/WcTx1Sr/ai-ml.jpg)
+![AI](https://raw.githubusercontent.com/github/explore/main/topics/machine-learning/machine-learning.png)
 
 ---
 
@@ -37,7 +37,7 @@ Acredito que o futuro da educação está na capacidade de integrar práticas pe
 - Uso de tecnologias para engajamento e personalização  
 - Adequação à BNCC e metodologias ativas  
 
-![Education Tech](https://i.ibb.co/vPsYzLt/edtech.jpg)
+![Education Tech](https://raw.githubusercontent.com/github/explore/main/topics/education/education.png)
 
 ---
 
@@ -46,12 +46,16 @@ Acredito que o futuro da educação está na capacidade de integrar práticas pe
 - Desenvolvimento de equipes  
 - Gestão de aprendizagem organizacional  
 
+![Corporate Training](https://raw.githubusercontent.com/github/explore/main/topics/business/business.png)
+
 ---
 
 ### 📚 Pedagogo Especializado  
 - Alfabetização e letramento  
 - Psicomotricidade e desenvolvimento humano  
 - Educação inclusiva e recursos digitais  
+
+![Special Education](https://raw.githubusercontent.com/github/explore/main/topics/reading/reading.png)
 
 ---
 
@@ -70,12 +74,14 @@ Acredito que o futuro da educação está na capacidade de integrar práticas pe
 - **Educação Ambiental e Sustentabilidade** – Plataforma Lattes  
 - **Formação de Gestores e Supervisores Escolares** – SME Tauá
 
+---
+
 ### 🏛️ Superintendente da SME de Tauá  
 - Gestão de políticas públicas educacionais  
 - Planejamento estratégico e inovação  
 - Acompanhamento pedagógico e administrativo  
 
-![Leadership](https://i.ibb.co/qxP58B1/leadership.jpg)
+![Leadership](https://raw.githubusercontent.com/github/explore/main/topics/leadership/leadership.png)
 
 ---
 
@@ -93,4 +99,4 @@ Acredito que o futuro da educação está na capacidade de integrar práticas pe
 
 ---
 
-💬 *Aberto a colaborações e projetos que envolvam tecnologia, educação e impacto social.*  
+💬 *Aberto a colaborações e projetos que envolvam tecnologia, educação e impacto social.*
