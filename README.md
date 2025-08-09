@@ -51,18 +51,18 @@ Acredito que o futuro da educação está na capacidade de integrar práticas pe
 
 ## 📜 Cursos e Formações Complementares  
 
-- **Formação Continuada em Educação Infantil** – SME Tauá  
-- **Formação em Alfabetização e Letramento** – SME Tauá  
-- **Formação em Educação Especial e Inclusiva** – SME Tauá  
+- **Formação Continuada em Educação Infantil** – AVAMEC/MEC   
+- **Formação em Alfabetização e Letramento** – AVAMEC/MEC   
+- **Formação em Educação Especial e Inclusiva** – AVAMEC/MEC   
 - **Gestão Democrática e Participativa na Escola** – MEC  
 - **Metodologias Ativas e Ensino Híbrido** – Google for Education  
 - **Psicomotricidade na Educação Básica** – Plataforma Lattes  
 - **Tecnologias Digitais Aplicadas à Educação** – AVAMEC/MEC  
-- **Avaliação Educacional e da Aprendizagem** – SME Tauá  
+- **Avaliação Educacional e da Aprendizagem** – AVAMEC/MEC  
 - **Educação Socioemocional** – Instituto Ayrton Senna  
-- **Planejamento e Gestão Escolar** – SME Tauá  
+- **Planejamento e Gestão Escolar** – AVAMEC/MEC   
 - **Educação Ambiental e Sustentabilidade** – Plataforma Lattes  
-- **Formação de Gestores e Supervisores Escolares** – SME Tauá
+- **Formação de Gestores e Supervisores Escolares** – AVAMEC/MEC 
 
 ---
 
