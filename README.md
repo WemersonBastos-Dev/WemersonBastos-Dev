@@ -7,7 +7,7 @@
 
 ### 🚀 Sobre mim
 
-💻 Sobre Mim
+
 Sou Professor Pedagogo em transição para a área de Tecnologia da Informação, com foco em Desenvolvimento Front-End. Desde 2018, atuo na rede municipal de Tauá, onde desenvolvi habilidades fundamentais como comunicação clara, liderança, criatividade, organização, empatia e resolução de problemas — competências altamente valorizadas também no universo da tecnologia.
 
 📲 Paralelamente à Educação, atuo como Designer de Social Media, Social Media Strategist, Vídeo Maker e Mentor de equipes em Marketing Digital. Essas experiências ampliaram minha visão sobre comportamento de público, estratégias digitais, análise de dados e soluções baseadas na experiência do usuário.
@@ -30,9 +30,7 @@ Sou Professor Pedagogo em transição para a área de Tecnologia da Informação
 ---
 
 
-### 📌 Em aprendizado constante
-
-🧠 Desenvolvedor Front-End Júnior em desenvolvimento.
+### 📌 Em aprendizado constante!
 
 🎯 Abaixo, acompanhe meu progresso por área de conhecimento:
 
