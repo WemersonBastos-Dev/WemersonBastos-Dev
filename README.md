@@ -2,7 +2,7 @@
 
 ## 📌 Sobre Mim  
 Sou **Professor Pedagogo Especialista** com expertise em **Tecnologia da Informação**, atuando nas áreas de **Desenvolvimento Web, Machine Learning e Tecnologias Educacionais**.  
-Desde 2018, faço parte da rede municipal de ensino de Tauá-CE e, atualmente, sou **Superintendente da SME de Tauá**.
+Desde 2018, faço parte da rede municipal de ensino de Tauá-CE e, atualmente, sou **Superintendente da SME de Tauá**. Atualmente estou cursando Análise e Desenvolvimento de Sistemas pela Descomplica. 
 
 Minha trajetória é guiada por um propósito claro: construir **pontes entre a educação e a tecnologia**, criando soluções inteligentes que ampliem o alcance do conhecimento, personalizem o aprendizado e tornem o processo educacional mais inclusivo, dinâmico e eficaz.
 
@@ -45,7 +45,10 @@ Acredito que o futuro da educação está na capacidade de integrar práticas pe
 ### 📚 Pedagogo Especializado  
 - Alfabetização e letramento  
 - Psicomotricidade e desenvolvimento humano  
-- Educação inclusiva e recursos digitais  
+- Educação inclusiva e recursos digitais
+
+### 🖥️ Graduação em Curso
+- Análise e Desenvolvimento de Sistemas pela Universidade Descomplica. 
 
 ---
 
