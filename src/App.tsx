@@ -168,7 +168,7 @@ const solutionCards = [
     type: 'ml',
   },
   {
-    title: 'Soluções Web & No-Code',
+    title: 'Soluções Web & Vibe-Code',
     subtitle: 'HTML · CSS · JS · UX/UI',
     description:
       'Construção de páginas, ferramentas digitais e fluxos No-code com foco em clareza visual, acessibilidade e facilidade de uso.',
