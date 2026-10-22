@@ -2,29 +2,212 @@
 
 @layer base {
   :root {
+    /* Typography */
     --font-display: 'Poppins', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     --font-sans: 'Plus Jakarta Sans', 'Poppins', system-ui, -apple-system, sans-serif;
+
+    /* Shared Visual Palette (Page & Illustrations) */
+    --color-blue-primary: #0878F9;
+    --color-blue-hover: #0663D0;
+    --color-navy-structure: #15115A;
+    --color-cyan-detail: #00BFEF;
+    --color-ice-surface: #EAF6FF;
+    --color-ice-plane: #D6ECFF;
+    --color-ice-border: #CBE4FF;
+    --color-white: #FFFFFF;
+    --color-text-muted: #4A5578;
+
+    /* Centralized Motion Tokens */
+    --anim-duration-enter: 560ms;
+    --anim-duration-ui: 180ms;
+    --anim-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --anim-stagger-step: 80ms;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
   }
 
   body {
     font-family: var(--font-sans);
-    color: #15115A;
-    background-color: #FFFFFF;
+    color: var(--color-navy-structure);
+    background-color: var(--color-white);
     overflow-x: hidden;
   }
 
-  h1, h2, h3, h4, .font-display {
+  h1,
+  h2,
+  h3,
+  h4,
+  .font-display {
     font-family: var(--font-display);
   }
 }
 
+/* Button & Interactive Link Micro-Interactions (150ms–220ms, max 2px lift) */
+.btn-interactive {
+  transition:
+    transform var(--anim-duration-ui) var(--anim-ease-out),
+    background-color var(--anim-duration-ui) var(--anim-ease-out),
+    border-color var(--anim-duration-ui) var(--anim-ease-out),
+    box-shadow var(--anim-duration-ui) var(--anim-ease-out),
+    color var(--anim-duration-ui) var(--anim-ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-interactive:hover {
+    transform: translateY(-2px);
+  }
+  .btn-interactive:active {
+    transform: translateY(0);
+  }
+}
+
+/* Interactive Card (Accordion / Actionable) vs Static Informational Card */
+.card-interactive {
+  transition:
+    transform var(--anim-duration-ui) var(--anim-ease-out),
+    border-color var(--anim-duration-ui) var(--anim-ease-out),
+    box-shadow var(--anim-duration-ui) var(--anim-ease-out),
+    background-color var(--anim-duration-ui) var(--anim-ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-interactive:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Section & Staggered Group Reveal (Progressive Enhancement: visible if JS disabled) */
+.reveal-ready {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--anim-duration-enter) var(--anim-ease-out),
+    transform var(--anim-duration-enter) var(--anim-ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Illustration Internal Sequenced Elements */
+.illus-part {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity var(--anim-duration-enter) var(--anim-ease-out),
+    transform var(--anim-duration-enter) var(--anim-ease-out);
+  transition-delay: var(--part-delay, 0ms);
+}
+
+.illus-active .illus-part {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Progressive Single-Pass Connection Line Draw */
+.illus-line-draw {
+  stroke-dasharray: 240;
+  stroke-dashoffset: 240;
+  transition: stroke-dashoffset 620ms var(--anim-ease-out);
+  transition-delay: var(--line-delay, 220ms);
+}
+
+.illus-active .illus-line-draw {
+  stroke-dashoffset: 0;
+}
+
+/* Illustration 1 Subtle Depth Shift on Desktop Hover (Non-Clickable) */
+.hero-illus-stage .hero-card-left,
+.hero-illus-stage .hero-card-right,
+.hero-illus-stage .hero-device-front {
+  transition: transform 220ms var(--anim-ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero-illus-stage:hover .hero-device-front {
+    transform: translateY(-3px);
+  }
+  .hero-illus-stage:hover .hero-card-left {
+    transform: translate(-3px, 2px);
+  }
+  .hero-illus-stage:hover .hero-card-right {
+    transform: translate(3px, 2px);
+  }
+}
+
+/* Single Discreet Ambient Float (4px amplitude, 8.5s cycle, paused when offscreen or disabled) */
+@keyframes subtleAmbientFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.ambient-float-active {
+  animation: subtleAmbientFloat 8.5s ease-in-out infinite;
+}
+
+.ambient-float-paused {
+  animation-play-state: paused !important;
+}
+
+/* Reduced Motion Compliance: Immediate final state, zero displacement or smooth scroll */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
   *,
   ::before,
   ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
     scroll-behavior: auto !important;
   }
+
+  .reveal-ready,
+  .illus-part {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .illus-line-draw {
+    stroke-dashoffset: 0 !important;
+  }
+
+  .btn-interactive:hover,
+  .card-interactive:hover,
+  .hero-illus-stage:hover .hero-device-front,
+  .hero-illus-stage:hover .hero-card-left,
+  .hero-illus-stage:hover .hero-card-right {
+    transform: none !important;
+  }
+}
+
+/* Manual user toggle to disable motion */
+.motion-disabled .reveal-ready,
+.motion-disabled .illus-part {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+.motion-disabled .illus-line-draw {
+  stroke-dashoffset: 0 !important;
+  transition: none !important;
+}
+
+.motion-disabled .ambient-float-active {
+  animation: none !important;
 }
