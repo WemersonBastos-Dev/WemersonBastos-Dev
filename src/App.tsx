@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import {
   AlertCircle,
   BookOpen,
@@ -336,152 +336,216 @@ export default function App() {
   const [isExportingPdf, setIsExportingPdf] = useState(false);
   const [pdfExportError, setPdfExportError] = useState<string | null>(null);
 
-  // Reveal & Parallax state
+  // Hero illustration initial state: starts false when motion is enabled so the 600ms entry transition runs
   const [heroIllusRevealed, setHeroIllusRevealed] = useState(false);
-  const [visibleSections, setVisibleSections] = useState<Record<string, boolean>>({});
-  const [parallaxOffsets, setParallaxOffsets] = useState({
-    heroBg: 0,
-    heroDetail: 0,
-    sobreBg: 0,
-    atuacaoBg: 0,
-    atuacaoDetail: 0,
-  });
 
   const pageRootRef = useRef<HTMLDivElement | null>(null);
-  const heroSectionRef = useRef<HTMLElement | null>(null);
-  const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
-  const activeViewportSections = useRef<Record<string, boolean>>({ hero: true });
+  const heroContainerRef = useRef<HTMLDivElement | null>(null);
+  const sobreSectionRef = useRef<HTMLElement | null>(null);
+  const atuacaoSectionRef = useRef<HTMLElement | null>(null);
+
+  // Enable progressive enhancement class synchronously before paint when motion is permitted
+  useLayoutEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!mediaQuery.matches) {
+      document.documentElement.classList.add('js-motion-ready');
+    } else {
+      document.documentElement.classList.remove('js-motion-ready');
+      setHeroIllusRevealed(true);
+    }
+  }, []);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const rootEl = pageRootRef.current;
+    if (!rootEl) return;
 
-    if (prefersReducedMotion) {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    const applyReducedMotionState = () => {
+      document.documentElement.classList.remove('js-motion-ready');
       setHeroIllusRevealed(true);
-      setVisibleSections({
-        pilares: true,
-        sobre: true,
-        atuacao: true,
-        solucoes: true,
-        formacao: true,
-        contato: true,
+      rootEl.querySelectorAll<HTMLElement>('[data-reveal="true"]').forEach((el) => {
+        el.classList.add('is-visible');
       });
+      [heroContainerRef.current, sobreSectionRef.current, atuacaoSectionRef.current].forEach(
+        (sec) => {
+          if (sec) {
+            sec.style.setProperty('--px-bg', '0px');
+            sec.style.setProperty('--px-deco', '0px');
+            sec.style.setProperty('--px-main', '0px');
+          }
+        },
+      );
+    };
+
+    if (mediaQuery.matches) {
+      applyReducedMotionState();
       return;
     }
 
-    // Double requestAnimationFrame + brief delay ensures browser paints initial state before transitioning
+    document.documentElement.classList.add('js-motion-ready');
+
+    // 1. Trigger Hero Illustration 600ms entry animation after initial paint
     let raf1 = 0;
     let raf2 = 0;
-    const timer = window.setTimeout(() => {
+    const heroTimer = window.setTimeout(() => {
       raf1 = window.requestAnimationFrame(() => {
         raf2 = window.requestAnimationFrame(() => {
           setHeroIllusRevealed(true);
         });
       });
-    }, 60);
+    }, 45);
 
-    // Observer 1: One-time entry reveal for sections
+    // 2. Element-level IntersectionObserver: reveals each block once as it enters the viewport
+    const revealElements = Array.from(rootEl.querySelectorAll<HTMLElement>('[data-reveal="true"]'));
     const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          const sectionKey = entry.target.getAttribute('data-reveal-section');
-          if (entry.isIntersecting && sectionKey) {
-            setVisibleSections((prev) =>
-              prev[sectionKey] ? prev : { ...prev, [sectionKey]: true },
-            );
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
             revealObserver.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.15, rootMargin: '0px 0px -8% 0px' },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
     );
 
-    // Observer 2: Track which illustrated sections are currently in viewport to suspend offscreen parallax
-    const parallaxVisibilityObserver = new IntersectionObserver(
+    revealElements.forEach((el) => {
+      revealObserver.observe(el);
+    });
+
+    // 3. Parallax visibility observer: suspends offscreen sections
+    const parallaxSections: Array<{ key: string; el: HTMLElement | null }> = [
+      { key: 'hero', el: heroContainerRef.current },
+      { key: 'sobre', el: sobreSectionRef.current },
+      { key: 'atuacao', el: atuacaoSectionRef.current },
+    ];
+    const activeParallaxMap: Record<string, boolean> = {
+      hero: true,
+      sobre: false,
+      atuacao: false,
+    };
+
+    const parallaxObserver = new IntersectionObserver(
       (entries) => {
+        let becameVisible = false;
         entries.forEach((entry) => {
           const key = entry.target.getAttribute('data-parallax-section');
           if (key) {
-            activeViewportSections.current[key] = entry.isIntersecting;
+            activeParallaxMap[key] = entry.isIntersecting;
+            if (entry.isIntersecting) {
+              becameVisible = true;
+            }
           }
         });
+        if (becameVisible) {
+          scheduleParallax();
+        }
       },
-      { threshold: 0.01, rootMargin: '100px 0px 100px 0px' },
+      { threshold: 0.01, rootMargin: '120px 0px 120px 0px' },
     );
 
-    if (heroSectionRef.current) {
-      parallaxVisibilityObserver.observe(heroSectionRef.current);
-    }
-
-    Object.values(sectionRefs.current).forEach((node) => {
-      if (node) {
-        revealObserver.observe(node);
-        if (node.hasAttribute('data-parallax-section')) {
-          parallaxVisibilityObserver.observe(node);
-        }
-      }
+    parallaxSections.forEach(({ el }) => {
+      if (el) parallaxObserver.observe(el);
     });
 
-    // Throttled scroll listener using requestAnimationFrame for strategic parallax
+    // Read centralized amplitude variables from :root
+    const rootStyle = window.getComputedStyle(document.documentElement);
+    const parsePxVar = (name: string, fallback: number) => {
+      const val = parseFloat(rootStyle.getPropertyValue(name));
+      return Number.isFinite(val) ? val : fallback;
+    };
+
+    const amplitudes = {
+      desktopBg: parsePxVar('--parallax-amp-bg-desktop', 22),
+      desktopDeco: parsePxVar('--parallax-amp-deco-desktop', 18),
+      desktopMain: parsePxVar('--parallax-amp-main-desktop', 15),
+      mobileBg: parsePxVar('--parallax-amp-bg-mobile', 9),
+      mobileDeco: parsePxVar('--parallax-amp-deco-mobile', 7),
+      mobileMain: parsePxVar('--parallax-amp-main-mobile', 5),
+    };
+
+    // 4. Zero-rerender requestAnimationFrame parallax coordinator (batched reads -> batched writes)
     let scrollTicking = false;
+    let parallaxRafId = 0;
+
     const updateParallax = () => {
       scrollTicking = false;
+      if (document.hidden || mediaQuery.matches) return;
+
       const viewportHeight = window.innerHeight || 800;
       const isMobile = window.innerWidth < 768;
-      const maxShift = isMobile ? 9 : 22;
 
-      const computeNormalizedOffset = (el: HTMLElement | null): number => {
-        if (!el) return 0;
+      // Amplitudes within specification: Desktop 15–25px | Mobile 5–10px
+      const ampBg = isMobile ? amplitudes.mobileBg : amplitudes.desktopBg;
+      const ampDeco = isMobile ? amplitudes.mobileDeco : amplitudes.desktopDeco;
+      const ampMain = isMobile ? amplitudes.mobileMain : amplitudes.desktopMain;
+
+      // Batch DOM Reads
+      const measurements: Array<{ el: HTMLElement; norm: number }> = [];
+      parallaxSections.forEach(({ key, el }) => {
+        if (!el || !activeParallaxMap[key]) return;
         const rect = el.getBoundingClientRect();
         const center = rect.top + rect.height / 2;
-        const deltaFromCenter = (viewportHeight / 2 - center) / (viewportHeight / 2);
-        return Math.max(-1, Math.min(1, deltaFromCenter));
-      };
+        const rawNorm = (viewportHeight / 2 - center) / (viewportHeight * 0.65);
+        const norm = Math.max(-1, Math.min(1, rawNorm));
+        measurements.push({ el, norm });
+      });
 
-      const heroNorm = activeViewportSections.current.hero
-        ? computeNormalizedOffset(heroSectionRef.current)
-        : 0;
-      const sobreNorm = activeViewportSections.current.sobre
-        ? computeNormalizedOffset(sectionRefs.current.sobre)
-        : 0;
-      const atuacaoNorm = activeViewportSections.current.atuacao
-        ? computeNormalizedOffset(sectionRefs.current.atuacao)
-        : 0;
+      // Batch DOM Writes via CSS custom properties (no React re-render)
+      measurements.forEach(({ el, norm }) => {
+        const bgShift = (norm * ampBg).toFixed(2);
+        const decoShift = (-norm * ampDeco).toFixed(2);
+        const mainShift = (norm * ampMain).toFixed(2);
 
-      setParallaxOffsets({
-        heroBg: Math.round(heroNorm * maxShift * 0.85),
-        heroDetail: Math.round(heroNorm * maxShift * 0.55),
-        sobreBg: Math.round(sobreNorm * maxShift * 0.75),
-        atuacaoBg: Math.round(atuacaoNorm * maxShift * 0.8),
-        atuacaoDetail: Math.round(atuacaoNorm * -maxShift * 0.5),
+        el.style.setProperty('--px-bg', `${bgShift}px`);
+        el.style.setProperty('--px-deco', `${decoShift}px`);
+        el.style.setProperty('--px-main', `${mainShift}px`);
       });
     };
 
-    const onScroll = () => {
-      if (!scrollTicking) {
-        scrollTicking = true;
-        window.requestAnimationFrame(updateParallax);
+    const scheduleParallax = () => {
+      if (scrollTicking || document.hidden || mediaQuery.matches) return;
+      scrollTicking = true;
+      parallaxRafId = window.requestAnimationFrame(updateParallax);
+    };
+
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        scheduleParallax();
       }
     };
 
-    window.addEventListener('scroll', onScroll, { passive: true });
+    const handleMotionPreferenceChange = (e: MediaQueryListEvent) => {
+      if (e.matches) {
+        applyReducedMotionState();
+      } else {
+        document.documentElement.classList.add('js-motion-ready');
+        scheduleParallax();
+      }
+    };
+
+    window.addEventListener('scroll', scheduleParallax, { passive: true });
+    window.addEventListener('resize', scheduleParallax, { passive: true });
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    mediaQuery.addEventListener('change', handleMotionPreferenceChange);
+
+    // Initial parallax position calculation
     updateParallax();
 
     return () => {
-      window.clearTimeout(timer);
+      window.clearTimeout(heroTimer);
       window.cancelAnimationFrame(raf1);
       window.cancelAnimationFrame(raf2);
-      window.removeEventListener('scroll', onScroll);
+      window.cancelAnimationFrame(parallaxRafId);
+      window.removeEventListener('scroll', scheduleParallax);
+      window.removeEventListener('resize', scheduleParallax);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      mediaQuery.removeEventListener('change', handleMotionPreferenceChange);
       revealObserver.disconnect();
-      parallaxVisibilityObserver.disconnect();
+      parallaxObserver.disconnect();
     };
   }, []);
-
-  const registerSectionRef = (key: string) => (el: HTMLElement | null) => {
-    sectionRefs.current[key] = el;
-  };
-
-  const getRevealClass = (key: string) =>
-    visibleSections[key] ? 'reveal-item is-revealed' : 'reveal-item';
 
   const handleCopy = async (text: string, label: string) => {
     try {
@@ -512,16 +576,15 @@ export default function App() {
   return (
     <div ref={pageRootRef} className="min-h-screen bg-white text-[#15115A]">
       {/* HERO & TOP BAR */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-[#0878F9] via-[#0789F6] to-[#00BFEF] text-white">
-        {/* Decorative Background Layer with Subtle Parallax */}
+      <div
+        ref={heroContainerRef}
+        data-parallax-section="hero"
+        className="relative overflow-hidden bg-gradient-to-br from-[#0878F9] via-[#0789F6] to-[#00BFEF] text-white"
+      >
+        {/* Decorative Background Layer with Subtle Parallax (.parallax-bg) */}
         <svg
           aria-hidden="true"
-          style={
-            {
-              '--parallax-offset': `${-parallaxOffsets.heroBg * 0.6}px`,
-            } as React.CSSProperties
-          }
-          className="parallax-layer pointer-events-none absolute inset-0 h-full w-full opacity-20"
+          className="parallax-bg pointer-events-none absolute inset-0 h-full w-full opacity-20"
           viewBox="0 0 1440 700"
           fill="none"
           preserveAspectRatio="none"
@@ -651,12 +714,8 @@ export default function App() {
           </nav>
         )}
 
-        {/* 1. HERO CONTENT: Immediately available text/buttons on left + ILUSTRAÇÃO 1 on right */}
-        <section
-          ref={heroSectionRef}
-          data-parallax-section="hero"
-          className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-4 pt-8 pb-16 sm:px-6 md:grid-cols-12 md:pt-12 md:pb-24 lg:px-8"
-        >
+        {/* 1. HERO CONTENT: Immediately available text/buttons on left + ILUSTRAÇÃO 1 (600ms, 16px entry) on right */}
+        <section className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-4 pt-8 pb-16 sm:px-6 md:grid-cols-12 md:pt-12 md:pb-24 lg:px-8">
           <div className="md:col-span-7">
             <p className="text-sm font-medium tracking-wide text-[#E0F4FF]">
               Wemerson Bastos Evangelista · Tauá-CE
@@ -695,7 +754,7 @@ export default function App() {
               </a>
             </div>
 
-            {/* Main Action Buttons Row */}
+            {/* Main Action Buttons Row (Immediately interactive, 180ms hover transition, max 2px lift) */}
             <div className="mt-8 flex flex-wrap items-center gap-3.5 sm:gap-4">
               <a
                 href="#formacao"
@@ -755,11 +814,7 @@ export default function App() {
 
           {/* Right Column: ILUSTRAÇÃO 1 — Apresentação Profissional */}
           <div className="relative flex items-center justify-center md:col-span-5">
-            <HeroProfileIllustration
-              isRevealed={heroIllusRevealed}
-              parallaxBgOffset={parallaxOffsets.heroBg}
-              parallaxDetailOffset={parallaxOffsets.heroDetail}
-            />
+            <HeroProfileIllustration isRevealed={heroIllusRevealed} />
           </div>
         </section>
       </div>
@@ -788,18 +843,15 @@ export default function App() {
       </section>
 
       {/* 3. THREE-COLUMN SUMMARY PILLARS ON SOFT ICE BLUE + CURVED WAVE TRANSITION */}
-      <section
-        ref={registerSectionRef('pilares')}
-        data-reveal-section="pilares"
-        className="relative bg-[#EAF6FF] pt-16 pb-24 md:pt-24 md:pb-28"
-      >
+      <section data-pdf-section="pilares" className="relative bg-[#EAF6FF] pt-16 pb-24 md:pt-24 md:pb-28">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 md:grid-cols-3 md:gap-12">
             {corePillars.map((pillar, idx) => (
               <div
                 key={pillar.id}
-                style={{ '--reveal-delay': `${idx * 95}ms` } as React.CSSProperties}
-                className={`flex flex-col items-center text-center ${getRevealClass('pilares')}`}
+                data-reveal="true"
+                style={{ '--reveal-delay': `${idx * 80}ms` } as React.CSSProperties}
+                className="reveal-block flex flex-col items-center text-center"
               >
                 <div className="relative flex h-28 w-28 items-center justify-center rounded-full bg-[#D6ECFF]">
                   <div className="flex h-16 w-14 flex-col items-center justify-center rounded-2xl border-2 border-[#15115A] bg-[#0878F9] text-white shadow-sm">
@@ -821,8 +873,9 @@ export default function App() {
           </div>
 
           <div
-            style={{ '--reveal-delay': '280ms' } as React.CSSProperties}
-            className={`mt-12 text-center ${getRevealClass('pilares')}`}
+            data-reveal="true"
+            style={{ '--reveal-delay': '160ms' } as React.CSSProperties}
+            className="reveal-block mt-12 text-center"
           >
             <a
               href="#sobre"
@@ -850,13 +903,13 @@ export default function App() {
       {/* 4. SOBRE MIM & COMPETÊNCIAS TÉCNICAS (White Section with ILUSTRAÇÃO 3 — Educação e Tecnologia) */}
       <section
         id="sobre"
-        ref={registerSectionRef('sobre')}
-        data-reveal-section="sobre"
+        ref={sobreSectionRef}
+        data-pdf-section="sobre"
         data-parallax-section="sobre"
-        className="scroll-mt-20 bg-white py-16 md:py-24"
+        className="scroll-mt-24 bg-white py-16 md:py-24"
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className={`mx-auto max-w-3xl text-center ${getRevealClass('sobre')}`}>
+          <div data-reveal="true" className="reveal-block mx-auto max-w-3xl text-center">
             <h2 className="font-display text-3xl font-bold tracking-tight text-[#0878F9] sm:text-4xl [text-wrap:balance]">
               Construindo pontes entre a educação e a tecnologia
             </h2>
@@ -878,22 +931,22 @@ export default function App() {
             </p>
           </div>
 
-          {/* Central Interface Hub (ILUSTRAÇÃO 3) flanked by the 6 Real Competency Blocks */}
+          {/* Central Interface Hub (ILUSTRAÇÃO 3) flanked by the 6 Real Competency Blocks
+              Competencies reveal in sequence with 70ms intervals (0ms -> 350ms max) */}
           <div
             id="competencias"
-            className="scroll-mt-20 mt-12 grid items-center gap-12 md:mt-16 lg:grid-cols-12"
+            className="scroll-mt-24 mt-12 grid items-center gap-12 md:mt-16 lg:grid-cols-12"
           >
-            {/* Left 3 Competencies */}
+            {/* Left 3 Competencies (0ms, 70ms, 140ms) */}
             <div className="space-y-8 lg:col-span-4">
               {leftCompetencies.map((item, idx) => {
                 const Icon = item.icon;
                 return (
                   <div
                     key={item.title}
-                    style={{ '--reveal-delay': `${(idx + 1) * 90}ms` } as React.CSSProperties}
-                    className={`flex items-start gap-4 lg:flex-row-reverse lg:text-right ${getRevealClass(
-                      'sobre',
-                    )}`}
+                    data-reveal="true"
+                    style={{ '--reveal-delay': `${idx * 70}ms` } as React.CSSProperties}
+                    className="reveal-block flex items-start gap-4 lg:flex-row-reverse lg:text-right"
                   >
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#15115A] bg-[#0878F9] text-white shadow-xs">
                       <Icon className="h-5 w-5" />
@@ -913,21 +966,19 @@ export default function App() {
 
             {/* Center: ILUSTRAÇÃO 3 — Educação e Tecnologia */}
             <div className="flex justify-center lg:col-span-4">
-              <EducationTechBridgeIllustration
-                isRevealed={Boolean(visibleSections.sobre)}
-                parallaxBgOffset={parallaxOffsets.sobreBg}
-              />
+              <EducationTechBridgeIllustration />
             </div>
 
-            {/* Right 3 Competencies */}
+            {/* Right 3 Competencies (210ms, 280ms, 350ms) */}
             <div className="space-y-8 lg:col-span-4">
               {rightCompetencies.map((item, idx) => {
                 const Icon = item.icon;
                 return (
                   <div
                     key={item.title}
-                    style={{ '--reveal-delay': `${(idx + 2) * 90}ms` } as React.CSSProperties}
-                    className={`flex items-start gap-4 ${getRevealClass('sobre')}`}
+                    data-reveal="true"
+                    style={{ '--reveal-delay': `${(idx + 3) * 70}ms` } as React.CSSProperties}
+                    className="reveal-block flex items-start gap-4"
                   >
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#15115A] bg-[#0878F9] text-white shadow-xs">
                       <Icon className="h-5 w-5" />
@@ -948,16 +999,16 @@ export default function App() {
         </div>
       </section>
 
-      {/* 5. EXPERIÊNCIA E ATUAÇÃO (Soft Ice Blue Section with NOVA ILUSTRAÇÃO — Mesa de Trabalho) */}
+      {/* 5. EXPERIÊNCIA E ATUAÇÃO (Soft Ice Blue Section with ILUSTRAÇÃO 2 — Mesa de Trabalho) */}
       <section
         id="atuacao"
-        ref={registerSectionRef('atuacao')}
-        data-reveal-section="atuacao"
+        ref={atuacaoSectionRef}
+        data-pdf-section="atuacao"
         data-parallax-section="atuacao"
-        className="scroll-mt-20 bg-[#EAF6FF] py-16 md:py-24"
+        className="scroll-mt-24 bg-[#EAF6FF] py-16 md:py-24"
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className={`mx-auto max-w-2xl text-center ${getRevealClass('atuacao')}`}>
+          <div data-reveal="true" className="reveal-block mx-auto max-w-2xl text-center">
             <h2 className="font-display text-3xl font-bold tracking-tight text-[#0878F9] sm:text-4xl">
               Integrando pedagogia, gestão e código
             </h2>
@@ -969,13 +1020,9 @@ export default function App() {
           </div>
 
           <div className="mt-12 grid items-center gap-12 md:mt-16 lg:grid-cols-12">
-            {/* Left: NOVA ILUSTRAÇÃO — Estação de Trabalho (Notebook, Livro, Documento e Código) */}
+            {/* Left: ILUSTRAÇÃO 2 — Estação de Trabalho (Notebook, Livro, Documento e Código) */}
             <div className="flex justify-center lg:col-span-5">
-              <WorkstationIllustration
-                isRevealed={Boolean(visibleSections.atuacao)}
-                parallaxBgOffset={parallaxOffsets.atuacaoBg}
-                parallaxDetailOffset={parallaxOffsets.atuacaoDetail}
-              />
+              <WorkstationIllustration />
             </div>
 
             {/* Right Interactive Accordion List */}
@@ -985,67 +1032,68 @@ export default function App() {
                 return (
                   <div
                     key={item.id}
-                    style={{ '--reveal-delay': `${(idx + 1) * 85}ms` } as React.CSSProperties}
-                    className={`card-interactive rounded-2xl border border-[#C9E5FF] bg-[#F7FBFF] hover:border-[#0878F9]/40 hover:shadow-md hover:shadow-[#0878F9]/10 ${getRevealClass(
-                      'atuacao',
-                    )}`}
+                    data-reveal="true"
+                    style={{ '--reveal-delay': `${idx * 65}ms` } as React.CSSProperties}
+                    className="reveal-block"
                   >
-                    <button
-                      type="button"
-                      onClick={() => setOpenAccordion(isOpen ? '' : item.id)}
-                      aria-expanded={isOpen}
-                      className="flex w-full items-center justify-between gap-4 rounded-2xl px-6 py-4 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9]"
-                    >
-                      <div className="flex items-start gap-4">
-                        <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#0878F9] text-white">
-                          <Check className="h-4 w-4 stroke-[2.5]" />
-                        </span>
-                        <div>
-                          <h3 className="font-display text-base font-bold text-[#15115A]">
-                            {item.title}
-                          </h3>
-                          <p className="mt-1 text-xs leading-relaxed text-[#526080]">
-                            {item.summary}
-                          </p>
+                    <div className="card-interactive rounded-2xl border border-[#C9E5FF] bg-[#F7FBFF] hover:border-[#0878F9]/40 hover:shadow-md hover:shadow-[#0878F9]/10">
+                      <button
+                        type="button"
+                        onClick={() => setOpenAccordion(isOpen ? '' : item.id)}
+                        aria-expanded={isOpen}
+                        className="flex w-full items-center justify-between gap-4 rounded-2xl px-6 py-4 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9]"
+                      >
+                        <div className="flex items-start gap-4">
+                          <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#0878F9] text-white">
+                            <Check className="h-4 w-4 stroke-[2.5]" />
+                          </span>
+                          <div>
+                            <h3 className="font-display text-base font-bold text-[#15115A]">
+                              {item.title}
+                            </h3>
+                            <p className="mt-1 text-xs leading-relaxed text-[#526080]">
+                              {item.summary}
+                            </p>
+                          </div>
                         </div>
+                        <ChevronDown
+                          data-pdf-hide="true"
+                          className={`h-5 w-5 shrink-0 text-[#0878F9] transition-transform duration-150 ${
+                            isOpen ? 'rotate-180' : ''
+                          }`}
+                        />
+                      </button>
+
+                      <div
+                        data-pdf-accordion-body="true"
+                        className={`${
+                          isOpen ? 'block' : 'hidden'
+                        } border-t border-[#DDF0FF] px-6 pt-4 pb-5 pl-16`}
+                      >
+                        <ul className="space-y-2.5 text-xs leading-relaxed text-[#3E4C6E] sm:text-sm">
+                          {item.details.map((detail) => (
+                            <li key={detail} className="flex items-start gap-2.5">
+                              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#0878F9]" />
+                              <span>{detail}</span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        {item.externalLink && (
+                          <div className="mt-4">
+                            <a
+                              href={item.externalLink.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={item.externalLink.ariaLabel}
+                              className="btn-interactive inline-flex items-center gap-1.5 rounded-full bg-[#0878F9] px-4 py-1.5 text-xs font-semibold text-white hover:bg-[#0663D0] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9]"
+                            >
+                              <span>{item.externalLink.label}</span>
+                              <ExternalLink className="h-3.5 w-3.5" />
+                            </a>
+                          </div>
+                        )}
                       </div>
-                      <ChevronDown
-                        data-pdf-hide="true"
-                        className={`h-5 w-5 shrink-0 text-[#0878F9] transition-transform duration-150 ${
-                          isOpen ? 'rotate-180' : ''
-                        }`}
-                      />
-                    </button>
-
-                    <div
-                      data-pdf-accordion-body="true"
-                      className={`${
-                        isOpen ? 'block' : 'hidden'
-                      } border-t border-[#DDF0FF] px-6 pt-4 pb-5 pl-16`}
-                    >
-                      <ul className="space-y-2.5 text-xs leading-relaxed text-[#3E4C6E] sm:text-sm">
-                        {item.details.map((detail) => (
-                          <li key={detail} className="flex items-start gap-2.5">
-                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#0878F9]" />
-                            <span>{detail}</span>
-                          </li>
-                        ))}
-                      </ul>
-
-                      {item.externalLink && (
-                        <div className="mt-4">
-                          <a
-                            href={item.externalLink.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={item.externalLink.ariaLabel}
-                            className="btn-interactive inline-flex items-center gap-1.5 rounded-full bg-[#0878F9] px-4 py-1.5 text-xs font-semibold text-white hover:bg-[#0663D0] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9]"
-                          >
-                            <span>{item.externalLink.label}</span>
-                            <ExternalLink className="h-3.5 w-3.5" />
-                          </a>
-                        </div>
-                      )}
                     </div>
                   </div>
                 );
@@ -1058,16 +1106,16 @@ export default function App() {
       {/* 6. FRENTES DE DESENVOLVIMENTO E SOLUÇÕES */}
       <section
         id="solucoes"
-        ref={registerSectionRef('solucoes')}
-        data-reveal-section="solucoes"
-        className="scroll-mt-20 bg-white py-16 md:py-24"
+        data-pdf-section="solucoes"
+        className="scroll-mt-24 bg-white py-16 md:py-24"
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-start gap-12 lg:grid-cols-12">
             {/* Left Editorial Column */}
             <div
+              data-reveal="true"
               data-pdf-sticky="true"
-              className={`lg:col-span-4 lg:sticky lg:top-10 ${getRevealClass('solucoes')}`}
+              className="reveal-block lg:col-span-4 lg:sticky lg:top-10"
             >
               <h2 className="font-display text-3xl font-bold leading-tight text-[#0878F9] [text-wrap:balance]">
                 Soluções educacionais e tecnológicas com propósito
@@ -1107,10 +1155,9 @@ export default function App() {
               {solutionCards.map((card, idx) => (
                 <article
                   key={card.title}
-                  style={{ '--reveal-delay': `${(idx + 1) * 90}ms` } as React.CSSProperties}
-                  className={`flex flex-col items-center rounded-2xl border border-[#E6F2FF] bg-white p-6 text-center shadow-[0_14px_40px_-12px_rgba(8,120,249,0.12)] sm:p-8 ${getRevealClass(
-                    'solucoes',
-                  )}`}
+                  data-reveal="true"
+                  style={{ '--reveal-delay': `${idx * 70}ms` } as React.CSSProperties}
+                  className="reveal-block flex flex-col items-center rounded-2xl border border-[#E6F2FF] bg-white p-6 text-center shadow-[0_14px_40px_-12px_rgba(8,120,249,0.12)] sm:p-8"
                 >
                   <div className="flex h-24 w-24 items-center justify-center rounded-full bg-[#EAF6FF]">
                     {card.type === 'platform' && (
@@ -1152,12 +1199,11 @@ export default function App() {
       {/* 7. TRAJETÓRIA (3 STEPS) + TABELA DE CURSOS E IDIOMAS */}
       <section
         id="formacao"
-        ref={registerSectionRef('formacao')}
-        data-reveal-section="formacao"
-        className="scroll-mt-20 relative bg-[#EAF6FF] py-16 md:py-24"
+        data-pdf-section="formacao"
+        className="scroll-mt-24 relative bg-[#EAF6FF] py-16 md:py-24"
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className={`mx-auto max-w-2xl text-center ${getRevealClass('formacao')}`}>
+          <div data-reveal="true" className="reveal-block mx-auto max-w-2xl text-center">
             <h2 className="font-display text-3xl font-bold text-[#0878F9] sm:text-4xl">
               Trajetória Acadêmica e Profissional
             </h2>
@@ -1171,8 +1217,9 @@ export default function App() {
             {trajectorySteps.map((item, idx) => (
               <div
                 key={item.step}
-                style={{ '--reveal-delay': `${(idx + 1) * 90}ms` } as React.CSSProperties}
-                className={`flex flex-col items-center text-center ${getRevealClass('formacao')}`}
+                data-reveal="true"
+                style={{ '--reveal-delay': `${idx * 75}ms` } as React.CSSProperties}
+                className="reveal-block flex flex-col items-center text-center"
               >
                 <div className="relative inline-flex min-h-[92px] items-center justify-center rounded-3xl bg-[#D6ECFF] px-6 py-4">
                   <span
@@ -1196,11 +1243,8 @@ export default function App() {
           </div>
 
           {/* Courses Table */}
-          <div
-            style={{ '--reveal-delay': '260ms' } as React.CSSProperties}
-            className={`mt-20 md:mt-24 ${getRevealClass('formacao')}`}
-          >
-            <div className="mx-auto max-w-2xl text-center">
+          <div className="mt-20 md:mt-24">
+            <div data-reveal="true" className="reveal-block mx-auto max-w-2xl text-center">
               <h2 className="font-display text-3xl font-bold text-[#0878F9] sm:text-4xl">
                 Cursos e Formações Complementares
               </h2>
@@ -1212,8 +1256,9 @@ export default function App() {
 
             {/* Interactive Filter Controls */}
             <div
+              data-reveal="true"
               data-pdf-hide="true"
-              className="mt-8 flex flex-wrap items-center justify-center gap-2.5"
+              className="reveal-block mt-8 flex flex-wrap items-center justify-center gap-2.5"
             >
               <button
                 type="button"
@@ -1262,7 +1307,10 @@ export default function App() {
             </div>
 
             {/* Blue / Navy / White Table */}
-            <div className="mt-8 overflow-hidden rounded-2xl shadow-[0_18px_45px_-15px_rgba(8,120,249,0.18)]">
+            <div
+              data-reveal="true"
+              className="reveal-block mt-8 overflow-hidden rounded-2xl shadow-[0_18px_45px_-15px_rgba(8,120,249,0.18)]"
+            >
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[600px] border-collapse text-left">
                   <thead>
@@ -1307,10 +1355,12 @@ export default function App() {
 
             {/* Idiomas Row */}
             <div className="mt-12 grid gap-6 sm:grid-cols-3">
-              {languages.map((item) => (
+              {languages.map((item, idx) => (
                 <div
                   key={item.language}
-                  className="flex flex-col justify-between rounded-2xl border border-[#CDE6FF] bg-white p-6 shadow-xs"
+                  data-reveal="true"
+                  style={{ '--reveal-delay': `${idx * 70}ms` } as React.CSSProperties}
+                  className="reveal-block flex flex-col justify-between rounded-2xl border border-[#CDE6FF] bg-white p-6 shadow-xs"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2.5">
@@ -1332,14 +1382,13 @@ export default function App() {
       {/* 8. CITAÇÃO AUTORAL & CONTATO DIRETO */}
       <section
         id="contato"
-        ref={registerSectionRef('contato')}
-        data-reveal-section="contato"
-        className="scroll-mt-20 bg-white py-16 md:py-24"
+        data-pdf-section="contato"
+        className="scroll-mt-24 bg-white py-16 md:py-24"
       >
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12">
             {/* Left: Author Quote */}
-            <div className={`relative lg:col-span-6 ${getRevealClass('contato')}`}>
+            <div data-reveal="true" className="reveal-block relative lg:col-span-6">
               <h2 className="font-display text-2xl font-bold text-[#15115A] sm:text-3xl">
                 Propósito e Conexão Profissional
               </h2>
@@ -1368,8 +1417,9 @@ export default function App() {
 
             {/* Right: Direct Contact Cards (E-mail, WhatsApp, LinkedIn, Instagram Pessoal, NEXORA) */}
             <div
-              style={{ '--reveal-delay': '110ms' } as React.CSSProperties}
-              className={`space-y-4 lg:col-span-6 ${getRevealClass('contato')}`}
+              data-reveal="true"
+              style={{ '--reveal-delay': '80ms' } as React.CSSProperties}
+              className="reveal-block space-y-4 lg:col-span-6"
             >
               <div className="rounded-2xl border border-[#DCEEFF] bg-[#F9FCFF] p-6 sm:p-8">
                 <h3 className="font-display text-lg font-bold text-[#15115A]">

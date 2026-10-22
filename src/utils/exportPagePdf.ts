@@ -65,6 +65,19 @@ export async function exportPageToPdf(sourceElement: HTMLElement): Promise<void>
   clone.style.minWidth = `${EXPORT_DESKTOP_WIDTH}px`;
   clone.style.maxWidth = `${EXPORT_DESKTOP_WIDTH}px`;
 
+  // Ensure all reveal elements are in their final visible state and reset scroll parallax offsets
+  // while preserving original SVG transform="rotate(...)" attributes.
+  clone
+    .querySelectorAll<HTMLElement>('.hero-illus-enter, .reveal-block, .illus-stage')
+    .forEach((el) => {
+      el.classList.add('is-visible');
+    });
+  clone.querySelectorAll<HTMLElement>('[data-parallax-section]').forEach((el) => {
+    el.style.setProperty('--px-bg', '0px');
+    el.style.setProperty('--px-deco', '0px');
+    el.style.setProperty('--px-main', '0px');
+  });
+
   offscreenHost.appendChild(clone);
   document.body.appendChild(offscreenHost);
 
