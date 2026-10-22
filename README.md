@@ -6,11 +6,14 @@
 <br />
 
 <!-- Botões em formato de cápsula (estilo referência) -->
-<a href="mailto:bastos.weeme@gmail.com">
-  <img src="https://img.shields.io/badge/E--mail-bastos.weeme%40gmail.com-0878F9?style=for-the-badge&logo=gmail&logoColor=white" alt="E-mail" />
+<a href="https://professional-resume-sigma.vercel.app">
+  <img src="https://img.shields.io/badge/Curr%C3%ADculo_Profissional-Acessar_na_Vercel-0878F9?style=for-the-badge&logo=vercel&logoColor=white" alt="Currículo Profissional" />
 </a>
 <a href="https://www.linkedin.com/in/wemerson-bastos-129451252">
   <img src="https://img.shields.io/badge/LinkedIn-Conectar_no_LinkedIn-00BFEF?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
+</a>
+<a href="mailto:bastos.weeme@gmail.com">
+  <img src="https://img.shields.io/badge/E--mail-bastos.weeme%40gmail.com-0878F9?style=for-the-badge&logo=gmail&logoColor=white" alt="E-mail" />
 </a>
 <a href="tel:+5588997204035">
   <img src="https://img.shields.io/badge/Telefone-(88)_99720--4035-15115A?style=for-the-badge&logo=whatsapp&logoColor=white" alt="Telefone" />
@@ -48,6 +51,8 @@ Minha trajetória é guiada por um propósito claro: construir **pontes entre a 
 Acredito que o futuro da educação está na capacidade de integrar práticas pedagógicas sólidas com recursos tecnológicos de ponta, transformando salas de aula, treinamentos e ambientes corporativos em espaços vivos de inovação e impacto social.
 
 > 💡 *"Cada linha de código que escrevo é um passo rumo ao futuro que escolhi construir — unindo conhecimento, propósito e inovação."*
+
+📄 **Confira meu currículo profissional completo online:** [professional-resume-sigma.vercel.app](https://professional-resume-sigma.vercel.app)
 
 ---
 
@@ -165,14 +170,15 @@ Acredito que o futuro da educação está na capacidade de integrar práticas pe
 
 ---
 
-## 📫 Contato
+## 📫 Contato e Links Profissionais
 
 <div align="center">
 
 💬 *Aberto a colaborações e projetos que envolvam tecnologia, educação e impacto social.*
 
-| Canal | Contato Direto |
+| Canal | Link / Contato Direto |
 | :--- | :--- |
+| **Currículo Profissional (Web)** | [professional-resume-sigma.vercel.app](https://professional-resume-sigma.vercel.app) |
 | **E-mail** | [bastos.weeme@gmail.com](mailto:bastos.weeme@gmail.com) |
 | **Telefone / WhatsApp** | (88) 99720-4035 |
 | **LinkedIn** | [linkedin.com/in/wemerson-bastos-129451252](https://www.linkedin.com/in/wemerson-bastos-129451252) |
