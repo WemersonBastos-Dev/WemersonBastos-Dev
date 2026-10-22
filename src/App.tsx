@@ -662,21 +662,18 @@ export default function App() {
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
-                href="https://professional-resume-sigma.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#formacao"
                 className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-[#0878F9] shadow-lg shadow-[#054494]/20 transition-transform duration-150 hover:scale-[1.02] hover:bg-[#F5FBFF] whitespace-nowrap shrink-0"
               >
-                <span>Ver Currículo Profissional</span>
-                <ExternalLink className="h-4 w-4" />
+                <span>Trajetória Acadêmica e Profissional</span>
               </a>
 
               <a
                 href="#contato"
-                className="inline-flex items-center gap-2.5 rounded-full border border-white/75 bg-white/10 px-6 py-3.5 text-sm font-medium text-white backdrop-blur-xs transition-colors duration-150 hover:bg-white/20 whitespace-nowrap shrink-0"
+                className="inline-flex items-center gap-3 rounded-full border border-white/75 bg-white/10 px-6 py-3 text-sm font-medium text-white backdrop-blur-xs transition-colors duration-150 hover:bg-white/20 whitespace-nowrap shrink-0"
               >
-                <span className="flex h-5 w-5 items-center justify-center rounded-full border border-white/80 text-[10px]">
-                  ✉
+                <span className="flex h-7 w-7 items-center justify-center rounded-full border border-white/85 bg-white/10">
+                  <Mail className="h-4 w-4 stroke-[2.2]" />
                 </span>
                 <span>Falar Comigo</span>
               </a>
@@ -1519,28 +1516,6 @@ export default function App() {
                         </>
                       )}
                     </button>
-                  </div>
-
-                  {/* Currículo Profissional na Vercel */}
-                  <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#E2F0FF] bg-white px-4 py-3.5">
-                    <div className="flex items-center gap-3">
-                      <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#E8F5FF] text-[#0878F9]">
-                        <FileText className="h-4 w-4" />
-                      </span>
-                      <div>
-                        <p className="text-sm font-medium text-[#15115A]">Currículo Profissional Online</p>
-                        <p className="text-xs text-[#526080]">professional-resume-sigma.vercel.app</p>
-                      </div>
-                    </div>
-                    <a
-                      href="https://professional-resume-sigma.vercel.app"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-full bg-[#0878F9] px-4 py-1.5 text-xs font-semibold text-white hover:bg-[#0663D0] whitespace-nowrap shrink-0"
-                    >
-                      <span>Ver Currículo</span>
-                      <ExternalLink className="h-3.5 w-3.5" />
-                    </a>
                   </div>
 
                   {/* LinkedIn */}
