@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
+  AlertCircle,
   BookOpen,
   BrainCircuit,
   Check,
@@ -7,10 +8,12 @@ import {
   Code2,
   Copy,
   ExternalLink,
+  FileDown,
   Globe2,
   GraduationCap,
   Landmark,
   Layers,
+  Loader2,
   Mail,
   Menu,
   MessageCircle,
@@ -23,6 +26,7 @@ import {
   HeroProfileIllustration,
   WorkstationIllustration,
 } from './components/CurriculumIllustrations';
+import { exportPageToPdf } from './utils/exportPagePdf';
 
 interface Course {
   title: string;
@@ -35,6 +39,7 @@ const WHATSAPP_URL =
   'https://wa.me/5588997204035?text=Ol%C3%A1%2C%20Wemerson!%20Acessei%20seu%20curr%C3%ADculo%20profissional%20e%20gostaria%20de%20conversar%20com%20voc%C3%AA.';
 
 const INSTAGRAM_URL = 'https://www.instagram.com/wemerson.bastos7/';
+const NEXORA_URL = 'https://www.instagram.com/nexora_dev_/';
 const LINKEDIN_URL = 'https://www.linkedin.com/in/wemerson-bastos-129451252';
 
 const techStripItems = [
@@ -124,6 +129,20 @@ const accordionAreas = [
       'Planejamento estratégico e inovação aplicados à rede municipal de ensino.',
       'Acompanhamento pedagógico e administrativo de unidades escolares e equipes.',
     ],
+  },
+  {
+    id: 'nexora-agencia',
+    title: 'Fundador da NEXORA',
+    summary: 'Fundador da NEXORA, agência de desenvolvimento de soluções digitais.',
+    details: [
+      'Fundador da NEXORA, agência de desenvolvimento de soluções digitais.',
+      'Desenvolvimento de interfaces, páginas web e soluções tecnológicas centradas na experiência do usuário.',
+    ],
+    externalLink: {
+      label: 'Conheça a NEXORA',
+      url: NEXORA_URL,
+      ariaLabel: 'Conheça a NEXORA, agência de desenvolvimento de soluções digitais, no Instagram',
+    },
   },
   {
     id: 'ml-educacao',
@@ -313,6 +332,10 @@ export default function App() {
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // PDF Export state
+  const [isExportingPdf, setIsExportingPdf] = useState(false);
+  const [pdfExportError, setPdfExportError] = useState<string | null>(null);
+
   // Reveal & Parallax state
   const [heroIllusRevealed, setHeroIllusRevealed] = useState(false);
   const [visibleSections, setVisibleSections] = useState<Record<string, boolean>>({});
@@ -324,6 +347,7 @@ export default function App() {
     atuacaoDetail: 0,
   });
 
+  const pageRootRef = useRef<HTMLDivElement | null>(null);
   const heroSectionRef = useRef<HTMLElement | null>(null);
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
   const activeViewportSections = useRef<Record<string, boolean>>({ hero: true });
@@ -459,11 +483,6 @@ export default function App() {
   const getRevealClass = (key: string) =>
     visibleSections[key] ? 'reveal-item is-revealed' : 'reveal-item';
 
-  const filteredCourses =
-    courseFilter === 'all'
-      ? courses
-      : courses.filter((course) => course.category === courseFilter);
-
   const handleCopy = async (text: string, label: string) => {
     try {
       await navigator.clipboard.writeText(text);
@@ -474,8 +493,24 @@ export default function App() {
     }
   };
 
+  const handleDownloadPdf = async () => {
+    if (isExportingPdf || !pageRootRef.current) return;
+    setIsExportingPdf(true);
+    setPdfExportError(null);
+
+    try {
+      await exportPageToPdf(pageRootRef.current);
+    } catch {
+      setPdfExportError(
+        'Não foi possível concluir a geração do PDF neste momento. Tente novamente em instantes.',
+      );
+    } finally {
+      setIsExportingPdf(false);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-white text-[#15115A]">
+    <div ref={pageRootRef} className="min-h-screen bg-white text-[#15115A]">
       {/* HERO & TOP BAR */}
       <div className="relative overflow-hidden bg-gradient-to-br from-[#0878F9] via-[#0789F6] to-[#00BFEF] text-white">
         {/* Decorative Background Layer with Subtle Parallax */}
@@ -551,6 +586,7 @@ export default function App() {
 
             <button
               type="button"
+              data-pdf-hide="true"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
               aria-expanded={mobileMenuOpen}
               aria-label={mobileMenuOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'}
@@ -565,6 +601,7 @@ export default function App() {
         {mobileMenuOpen && (
           <nav
             aria-label="Menu móvel"
+            data-pdf-hide="true"
             className="relative z-20 mx-4 mb-4 rounded-2xl border border-white/20 bg-[#0767D8]/95 p-5 backdrop-blur-md sm:mx-6 md:hidden"
           >
             <div className="flex flex-col gap-3 text-sm font-medium text-white">
@@ -640,7 +677,26 @@ export default function App() {
               Desenvolvimento de Sistemas pela Descomplica.
             </p>
 
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+            {/* NEXORA Founder Highlight & Direct Instagram Link */}
+            <div className="mt-5 flex max-w-xl flex-wrap items-center justify-between gap-3 rounded-2xl border border-white/25 bg-white/10 px-4 py-3 backdrop-blur-xs">
+              <p className="text-xs font-medium leading-relaxed text-white sm:text-sm">
+                <strong>Fundador da NEXORA</strong>, agência de desenvolvimento de soluções
+                digitais.
+              </p>
+              <a
+                href={NEXORA_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Conheça a NEXORA, agência de desenvolvimento de soluções digitais, no Instagram"
+                className="btn-interactive inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-1.5 text-xs font-semibold text-[#0878F9] shadow-xs hover:bg-[#F5FBFF] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              >
+                <span>Conheça a NEXORA</span>
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            </div>
+
+            {/* Main Action Buttons Row */}
+            <div className="mt-8 flex flex-wrap items-center gap-3.5 sm:gap-4">
               <a
                 href="#formacao"
                 className="btn-interactive inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#0878F9] shadow-lg shadow-[#054494]/20 hover:bg-[#F5FBFF] sm:px-7 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
@@ -657,7 +713,44 @@ export default function App() {
                 </span>
                 <span>Falar Comigo</span>
               </a>
+
+              <button
+                type="button"
+                data-pdf-hide="true"
+                onClick={handleDownloadPdf}
+                disabled={isExportingPdf}
+                aria-busy={isExportingPdf}
+                aria-label={
+                  isExportingPdf
+                    ? 'Gerando PDF da página profissional'
+                    : 'Baixar Página em PDF (Pagina_Profissional_Wemerson_Bastos.pdf)'
+                }
+                className="btn-interactive inline-flex cursor-pointer items-center gap-2.5 rounded-full border border-white/85 bg-[#15115A]/85 px-6 py-3.5 text-sm font-semibold text-white shadow-md shadow-[#05357A]/25 backdrop-blur-xs hover:bg-[#15115A] disabled:cursor-wait disabled:opacity-80 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              >
+                {isExportingPdf ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin text-[#00BFEF]" />
+                    <span>Gerando PDF…</span>
+                  </>
+                ) : (
+                  <>
+                    <FileDown className="h-4 w-4 text-[#00BFEF]" />
+                    <span>Baixar Página em PDF</span>
+                  </>
+                )}
+              </button>
             </div>
+
+            {pdfExportError && (
+              <div
+                role="alert"
+                data-pdf-hide="true"
+                className="mt-4 flex max-w-xl items-center gap-2.5 rounded-xl border border-white/30 bg-[#15115A]/90 px-4 py-3 text-xs text-white"
+              >
+                <AlertCircle className="h-4 w-4 shrink-0 text-[#00BFEF]" />
+                <span>{pdfExportError}</span>
+              </div>
+            )}
           </div>
 
           {/* Right Column: ILUSTRAÇÃO 1 — Apresentação Profissional */}
@@ -776,9 +869,12 @@ export default function App() {
               <strong className="font-semibold text-[#15115A]">
                 Análise e Desenvolvimento de Sistemas
               </strong>{' '}
-              pela Universidade Descomplica, criando soluções inteligentes que ampliam o alcance do
-              conhecimento, personalizam o aprendizado e tornam o processo educacional mais
-              inclusivo, dinâmico e eficaz.
+              pela Universidade Descomplica e atuo como{' '}
+              <strong className="font-semibold text-[#15115A]">
+                Fundador da NEXORA, agência de desenvolvimento de soluções digitais
+              </strong>
+              , criando soluções inteligentes que ampliam o alcance do conhecimento, personalizam o
+              aprendizado e tornam o processo educacional mais inclusivo, dinâmico e eficaz.
             </p>
           </div>
 
@@ -914,24 +1010,43 @@ export default function App() {
                         </div>
                       </div>
                       <ChevronDown
+                        data-pdf-hide="true"
                         className={`h-5 w-5 shrink-0 text-[#0878F9] transition-transform duration-150 ${
                           isOpen ? 'rotate-180' : ''
                         }`}
                       />
                     </button>
 
-                    {isOpen && (
-                      <div className="border-t border-[#DDF0FF] px-6 pt-4 pb-5 pl-16">
-                        <ul className="space-y-2.5 text-xs leading-relaxed text-[#3E4C6E] sm:text-sm">
-                          {item.details.map((detail) => (
-                            <li key={detail} className="flex items-start gap-2.5">
-                              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#0878F9]" />
-                              <span>{detail}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
+                    <div
+                      data-pdf-accordion-body="true"
+                      className={`${
+                        isOpen ? 'block' : 'hidden'
+                      } border-t border-[#DDF0FF] px-6 pt-4 pb-5 pl-16`}
+                    >
+                      <ul className="space-y-2.5 text-xs leading-relaxed text-[#3E4C6E] sm:text-sm">
+                        {item.details.map((detail) => (
+                          <li key={detail} className="flex items-start gap-2.5">
+                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#0878F9]" />
+                            <span>{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      {item.externalLink && (
+                        <div className="mt-4">
+                          <a
+                            href={item.externalLink.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={item.externalLink.ariaLabel}
+                            className="btn-interactive inline-flex items-center gap-1.5 rounded-full bg-[#0878F9] px-4 py-1.5 text-xs font-semibold text-white hover:bg-[#0663D0] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9]"
+                          >
+                            <span>{item.externalLink.label}</span>
+                            <ExternalLink className="h-3.5 w-3.5" />
+                          </a>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 );
               })}
@@ -950,7 +1065,10 @@ export default function App() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-start gap-12 lg:grid-cols-12">
             {/* Left Editorial Column */}
-            <div className={`lg:col-span-4 lg:sticky lg:top-10 ${getRevealClass('solucoes')}`}>
+            <div
+              data-pdf-sticky="true"
+              className={`lg:col-span-4 lg:sticky lg:top-10 ${getRevealClass('solucoes')}`}
+            >
               <h2 className="font-display text-3xl font-bold leading-tight text-[#0878F9] [text-wrap:balance]">
                 Soluções educacionais e tecnológicas com propósito
               </h2>
@@ -959,15 +1077,27 @@ export default function App() {
                 análise de dados educacionais e formação de equipes em escolas e organizações.
               </p>
               <p className="mt-3 text-sm leading-relaxed text-[#526080]">
-                Aberto a colaborações e projetos que envolvam tecnologia, educação e impacto social.
+                Fundador da <strong className="font-semibold text-[#15115A]">NEXORA</strong>,
+                agência de desenvolvimento de soluções digitais. Aberto a colaborações e projetos
+                que envolvam tecnologia, educação e impacto social.
               </p>
 
-              <div className="mt-8">
+              <div className="mt-8 flex flex-wrap items-center gap-3">
                 <a
                   href="#contato"
                   className="btn-interactive inline-flex items-center justify-center rounded-full bg-[#0878F9] px-7 py-3.5 text-xs font-semibold text-white shadow-md shadow-[#0878F9]/20 hover:bg-[#0663D0] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9]"
                 >
                   Propor Colaboração
+                </a>
+                <a
+                  href={NEXORA_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Conheça a NEXORA, agência de desenvolvimento de soluções digitais, no Instagram"
+                  className="btn-interactive inline-flex items-center gap-1.5 rounded-full border border-[#0878F9] bg-[#F4FAFF] px-5 py-3 text-xs font-semibold text-[#0878F9] hover:bg-[#E4F3FF] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9]"
+                >
+                  <span>Conheça a NEXORA</span>
+                  <ExternalLink className="h-3.5 w-3.5" />
                 </a>
               </div>
             </div>
@@ -1081,7 +1211,10 @@ export default function App() {
             </div>
 
             {/* Interactive Filter Controls */}
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-2.5">
+            <div
+              data-pdf-hide="true"
+              className="mt-8 flex flex-wrap items-center justify-center gap-2.5"
+            >
               <button
                 type="button"
                 onClick={() => setCourseFilter('all')}
@@ -1146,20 +1279,27 @@ export default function App() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-[#E2F1FF] text-sm">
-                    {filteredCourses.map((course, idx) => (
-                      <tr
-                        key={course.title}
-                        className={idx % 2 === 0 ? 'bg-white' : 'bg-[#F5FAFF]'}
-                      >
-                        <td className="px-6 py-4 font-semibold text-[#15115A]">{course.title}</td>
-                        <td className="bg-[#0878F9] px-6 py-4 text-center font-medium text-white">
-                          {course.institution}
-                        </td>
-                        <td className="px-6 py-4 text-center text-xs font-medium text-[#4A5578]">
-                          {course.area}
-                        </td>
-                      </tr>
-                    ))}
+                    {courses.map((course, idx) => {
+                      const matchesFilter =
+                        courseFilter === 'all' || course.category === courseFilter;
+                      return (
+                        <tr
+                          key={course.title}
+                          data-pdf-course-row="true"
+                          className={`${idx % 2 === 0 ? 'bg-white' : 'bg-[#F5FAFF]'} ${
+                            matchesFilter ? '' : 'hidden'
+                          }`}
+                        >
+                          <td className="px-6 py-4 font-semibold text-[#15115A]">{course.title}</td>
+                          <td className="bg-[#0878F9] px-6 py-4 text-center font-medium text-white">
+                            {course.institution}
+                          </td>
+                          <td className="px-6 py-4 text-center text-xs font-medium text-[#4A5578]">
+                            {course.area}
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
@@ -1219,13 +1359,14 @@ export default function App() {
                 <footer className="mt-4 text-xs font-bold text-[#0878F9]">
                   Wemerson Bastos Evangelista{' '}
                   <span className="font-normal text-[#526080]">
-                    | Professor Pedagogo Especialista & Superintendente da SME de Tauá
+                    | Professor Pedagogo Especialista, Superintendente da SME de Tauá & Fundador da
+                    NEXORA
                   </span>
                 </footer>
               </blockquote>
             </div>
 
-            {/* Right: Direct Contact Cards (E-mail, WhatsApp, LinkedIn, Instagram) */}
+            {/* Right: Direct Contact Cards (E-mail, WhatsApp, LinkedIn, Instagram Pessoal, NEXORA) */}
             <div
               style={{ '--reveal-delay': '110ms' } as React.CSSProperties}
               className={`space-y-4 lg:col-span-6 ${getRevealClass('contato')}`}
@@ -1253,6 +1394,7 @@ export default function App() {
                     </a>
                     <button
                       type="button"
+                      data-pdf-hide="true"
                       onClick={() => handleCopy('bastos.weeme@gmail.com', 'email')}
                       className="btn-interactive inline-flex items-center gap-1.5 rounded-full bg-[#EAF6FF] px-3.5 py-1.5 text-xs font-semibold text-[#0878F9] hover:bg-[#D6ECFF] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9]"
                     >
@@ -1321,7 +1463,7 @@ export default function App() {
                     </a>
                   </div>
 
-                  {/* Instagram */}
+                  {/* Instagram Pessoal */}
                   <div className="card-interactive flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#E2F0FF] bg-white px-4 py-3.5 hover:border-[#0878F9]/35">
                     <div className="flex items-center gap-3">
                       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#EAF6FF] text-[#0878F9]">
@@ -1341,7 +1483,7 @@ export default function App() {
                         </svg>
                       </span>
                       <div>
-                        <p className="text-sm font-medium text-[#15115A]">Instagram</p>
+                        <p className="text-sm font-medium text-[#15115A]">Instagram Pessoal</p>
                         <p className="text-xs text-[#526080]">@wemerson.bastos7</p>
                       </div>
                     </div>
@@ -1349,11 +1491,38 @@ export default function App() {
                       href={INSTAGRAM_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label="Instagram de Wemerson Bastos"
+                      aria-label="Instagram pessoal de Wemerson Bastos (@wemerson.bastos7)"
                       className="btn-interactive inline-flex items-center gap-1.5 rounded-full bg-[#0878F9] px-4 py-1.5 text-xs font-semibold text-white hover:bg-[#0663D0] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9]"
                     >
-                      <span>Seguir no Instagram</span>
+                      <span>Instagram Pessoal</span>
                       <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
+                  </div>
+
+                  {/* NEXORA — Agência de Desenvolvimento de Soluções Digitais */}
+                  <div className="card-interactive flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#C9E5FF] bg-[#F4FAFF] px-4 py-3.5 hover:border-[#0878F9]/45">
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#15115A] text-[#00BFEF]">
+                        <Code2 className="h-4 w-4" />
+                      </span>
+                      <div>
+                        <p className="text-sm font-semibold text-[#15115A]">
+                          NEXORA · Soluções Digitais
+                        </p>
+                        <p className="text-xs text-[#526080]">
+                          Fundador da NEXORA · @nexora_dev_
+                        </p>
+                      </div>
+                    </div>
+                    <a
+                      href={NEXORA_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Conheça a NEXORA, agência de desenvolvimento de soluções digitais, no Instagram (@nexora_dev_)"
+                      className="btn-interactive inline-flex items-center gap-1.5 rounded-full bg-[#15115A] px-4 py-1.5 text-xs font-semibold text-white hover:bg-[#0878F9] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#15115A]"
+                    >
+                      <span>Conheça a NEXORA</span>
+                      <ExternalLink className="h-3.5 w-3.5 text-[#00BFEF]" />
                     </a>
                   </div>
                 </div>
@@ -1363,7 +1532,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* VIBRANT BLUE CTA BAR ABOVE FOOTER (Reorganized after removing Copiar README button) */}
+      {/* VIBRANT BLUE CTA BAR ABOVE FOOTER */}
       <section className="bg-gradient-to-r from-[#0878F9] to-[#00BFEF] py-12 text-white">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 sm:flex-row sm:px-6 lg:px-8">
           <div className="flex items-center gap-4 text-center sm:text-left">
@@ -1414,7 +1583,8 @@ export default function App() {
               </a>
               <p className="mt-3 max-w-sm text-xs leading-relaxed text-white/75">
                 Professor Pedagogo Especialista · Superintendente da SME de Tauá · Graduando em
-                Análise e Desenvolvimento de Sistemas (Universidade Descomplica).
+                Análise e Desenvolvimento de Sistemas (Universidade Descomplica) · Fundador da
+                NEXORA, agência de desenvolvimento de soluções digitais.
               </p>
               <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-[#00BFEF]">
                 <a
@@ -1431,10 +1601,20 @@ export default function App() {
                   href={INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Instagram de Wemerson Bastos"
+                  aria-label="Instagram pessoal de Wemerson Bastos (@wemerson.bastos7)"
                   className="hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
-                  Instagram
+                  Instagram Pessoal
+                </a>
+                <span aria-hidden="true">·</span>
+                <a
+                  href={NEXORA_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Conheça a NEXORA, agência de desenvolvimento de soluções digitais, no Instagram"
+                  className="hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                >
+                  Conheça a NEXORA
                 </a>
                 <span aria-hidden="true">·</span>
                 <a
@@ -1492,6 +1672,7 @@ export default function App() {
               <h3 className="font-display text-xs font-semibold text-[#00BFEF]">Atuação</h3>
               <ul className="mt-3 space-y-2 text-xs text-white/80">
                 <li>SME de Tauá-CE</li>
+                <li>Fundador da NEXORA</li>
                 <li>Desenvolvimento Web</li>
                 <li>Machine Learning</li>
                 <li>Tecnologias Educacionais</li>
@@ -1518,10 +1699,21 @@ export default function App() {
                     href={INSTAGRAM_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="Instagram de Wemerson Bastos"
+                    aria-label="Instagram pessoal de Wemerson Bastos"
                     className="hover:text-white hover:underline"
                   >
-                    @wemerson.bastos7
+                    Instagram Pessoal: @wemerson.bastos7
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={NEXORA_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Conheça a NEXORA no Instagram"
+                    className="hover:text-white hover:underline"
+                  >
+                    Conheça a NEXORA: @nexora_dev_
                   </a>
                 </li>
                 <li>Tauá — Ceará, Brasil</li>

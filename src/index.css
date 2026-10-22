@@ -146,7 +146,41 @@
   }
 }
 
-/* Automatic Reduced Motion Support (No manual toggle needed) */
+/* PDF Export Clone State: Final state, zero animations/parallax, no sticky overlap, hide transient controls */
+.pdf-export-clone,
+.pdf-export-clone * {
+  animation: none;
+  transition: none;
+}
+
+.pdf-export-clone .reveal-item,
+.pdf-export-clone .illus-reveal {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+.pdf-export-clone .parallax-layer {
+  transform: none;
+}
+
+.pdf-export-clone [data-pdf-hide="true"] {
+  display: none;
+}
+
+.pdf-export-clone [data-pdf-sticky="true"] {
+  position: static;
+}
+
+.pdf-export-clone [data-pdf-accordion-body="true"] {
+  display: block;
+}
+
+.pdf-export-clone [data-pdf-course-row="true"] {
+  display: table-row;
+}
+
+/* Automatic Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -167,5 +201,27 @@
   .hero-illus-container:hover .hero-depth-right {
     transform: none;
     transition: none;
+  }
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .reveal-item,
+  .illus-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .parallax-layer {
+    transform: none;
+  }
+
+  [data-pdf-hide="true"] {
+    display: none;
   }
 }
