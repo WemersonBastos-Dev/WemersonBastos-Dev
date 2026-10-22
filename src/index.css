@@ -6,7 +6,7 @@
     --font-display: 'Poppins', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     --font-sans: 'Plus Jakarta Sans', 'Poppins', system-ui, -apple-system, sans-serif;
 
-    /* Shared Visual Palette (Page & Illustrations) */
+    /* Shared Visual Palette */
     --color-blue-primary: #0878F9;
     --color-blue-hover: #0663D0;
     --color-navy-structure: #15115A;
@@ -17,11 +17,23 @@
     --color-white: #FFFFFF;
     --color-text-muted: #4A5578;
 
-    /* Centralized Motion Tokens */
-    --anim-duration-enter: 560ms;
-    --anim-duration-ui: 180ms;
+    /* Reusable Spacing Scale (4, 8, 12, 16, 24, 32, 48, 64, 96 px) */
+    --space-1: 0.25rem; /* 4px */
+    --space-2: 0.5rem;  /* 8px */
+    --space-3: 0.75rem; /* 12px */
+    --space-4: 1rem;    /* 16px */
+    --space-5: 1.5rem;  /* 24px */
+    --space-6: 2rem;    /* 32px */
+    --space-7: 3rem;    /* 48px */
+    --space-8: 4rem;    /* 64px */
+    --space-9: 6rem;    /* 96px */
+
+    /* Radii & Motion Tokens */
+    --radius-card: 1rem;     /* 16px */
+    --radius-panel: 1.5rem;  /* 24px */
+    --anim-duration-enter: 680ms;
+    --anim-duration-ui: 185ms;
     --anim-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-    --anim-stagger-step: 80ms;
   }
 
   html {
@@ -33,7 +45,6 @@
     font-family: var(--font-sans);
     color: var(--color-navy-structure);
     background-color: var(--color-white);
-    overflow-x: hidden;
   }
 
   h1,
@@ -45,7 +56,7 @@
   }
 }
 
-/* Button & Interactive Link Micro-Interactions (150ms–220ms, max 2px lift) */
+/* Button & Link Transitions (150ms–220ms, max 2px elevation) */
 .btn-interactive {
   transition:
     transform var(--anim-duration-ui) var(--anim-ease-out),
@@ -64,7 +75,7 @@
   }
 }
 
-/* Interactive Card (Accordion / Actionable) vs Static Informational Card */
+/* Interactive Cards (Accordions & Action Rows) */
 .card-interactive {
   transition:
     transform var(--anim-duration-ui) var(--anim-ease-out),
@@ -79,10 +90,10 @@
   }
 }
 
-/* Section & Staggered Group Reveal (Progressive Enhancement: visible if JS disabled) */
-.reveal-ready {
+/* Section & Group Entry Reveal (500–750ms, 16–24px vertical shift, single execution) */
+.reveal-item {
   opacity: 0;
-  transform: translateY(16px);
+  transform: translate3d(0, 22px, 0);
   transition:
     opacity var(--anim-duration-enter) var(--anim-ease-out),
     transform var(--anim-duration-enter) var(--anim-ease-out);
@@ -90,124 +101,71 @@
   will-change: opacity, transform;
 }
 
-.reveal-visible {
+.reveal-item.is-revealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
 }
 
-/* Illustration Internal Sequenced Elements */
-.illus-part {
+/* Illustration Sequenced Parts (Separated from Parallax Layers to avoid transform conflicts) */
+.illus-reveal {
   opacity: 0;
-  transform: translateY(14px);
+  transform: translate3d(0, 20px, 0);
   transition:
-    opacity var(--anim-duration-enter) var(--anim-ease-out),
-    transform var(--anim-duration-enter) var(--anim-ease-out);
+    opacity 660ms var(--anim-ease-out),
+    transform 660ms var(--anim-ease-out);
   transition-delay: var(--part-delay, 0ms);
 }
 
-.illus-active .illus-part {
+.illus-stage.is-revealed .illus-reveal {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
 }
 
-/* Progressive Single-Pass Connection Line Draw */
-.illus-line-draw {
-  stroke-dasharray: 240;
-  stroke-dashoffset: 240;
-  transition: stroke-dashoffset 620ms var(--anim-ease-out);
-  transition-delay: var(--line-delay, 220ms);
+/* Dedicated Parallax Layer (Driven by requestAnimationFrame CSS Custom Property) */
+.parallax-layer {
+  transform: translate3d(0, var(--parallax-offset, 0px), 0);
+  will-change: transform;
 }
 
-.illus-active .illus-line-draw {
-  stroke-dashoffset: 0;
-}
-
-/* Illustration 1 Subtle Depth Shift on Desktop Hover (Non-Clickable) */
-.hero-illus-stage .hero-card-left,
-.hero-illus-stage .hero-card-right,
-.hero-illus-stage .hero-device-front {
+/* Desktop Hover Depth for Hero Illustration (Applied to inner group, conflict-free) */
+.hero-depth-front,
+.hero-depth-left,
+.hero-depth-right {
   transition: transform 220ms var(--anim-ease-out);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .hero-illus-stage:hover .hero-device-front {
-    transform: translateY(-3px);
+  .hero-illus-container:hover .hero-depth-front {
+    transform: translate3d(0, -3px, 0);
   }
-  .hero-illus-stage:hover .hero-card-left {
-    transform: translate(-3px, 2px);
+  .hero-illus-container:hover .hero-depth-left {
+    transform: translate3d(-4px, 2px, 0);
   }
-  .hero-illus-stage:hover .hero-card-right {
-    transform: translate(3px, 2px);
-  }
-}
-
-/* Single Discreet Ambient Float (4px amplitude, 8.5s cycle, paused when offscreen or disabled) */
-@keyframes subtleAmbientFloat {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-4px);
+  .hero-illus-container:hover .hero-depth-right {
+    transform: translate3d(4px, 2px, 0);
   }
 }
 
-.ambient-float-active {
-  animation: subtleAmbientFloat 8.5s ease-in-out infinite;
-}
-
-.ambient-float-paused {
-  animation-play-state: paused !important;
-}
-
-/* Reduced Motion Compliance: Immediate final state, zero displacement or smooth scroll */
+/* Automatic Reduced Motion Support (No manual toggle needed) */
 @media (prefers-reduced-motion: reduce) {
   html {
-    scroll-behavior: auto !important;
+    scroll-behavior: auto;
   }
 
-  *,
-  ::before,
-  ::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    transition-delay: 0ms !important;
-    scroll-behavior: auto !important;
+  .reveal-item,
+  .illus-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 
-  .reveal-ready,
-  .illus-part {
-    opacity: 1 !important;
-    transform: none !important;
-  }
-
-  .illus-line-draw {
-    stroke-dashoffset: 0 !important;
-  }
-
+  .parallax-layer,
   .btn-interactive:hover,
   .card-interactive:hover,
-  .hero-illus-stage:hover .hero-device-front,
-  .hero-illus-stage:hover .hero-card-left,
-  .hero-illus-stage:hover .hero-card-right {
-    transform: none !important;
+  .hero-illus-container:hover .hero-depth-front,
+  .hero-illus-container:hover .hero-depth-left,
+  .hero-illus-container:hover .hero-depth-right {
+    transform: none;
+    transition: none;
   }
-}
-
-/* Manual user toggle to disable motion */
-.motion-disabled .reveal-ready,
-.motion-disabled .illus-part {
-  opacity: 1 !important;
-  transform: none !important;
-  transition: none !important;
-}
-
-.motion-disabled .illus-line-draw {
-  stroke-dashoffset: 0 !important;
-  transition: none !important;
-}
-
-.motion-disabled .ambient-float-active {
-  animation: none !important;
 }

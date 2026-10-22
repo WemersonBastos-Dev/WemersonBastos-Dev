@@ -7,22 +7,21 @@ import {
   Code2,
   Copy,
   ExternalLink,
-  FileText,
   Globe2,
   GraduationCap,
   Landmark,
   Layers,
   Mail,
   Menu,
-  Phone,
+  MessageCircle,
   Sparkles,
   Users,
   X,
 } from 'lucide-react';
 import {
-  CollaborationKnowledgeIllustration,
   EducationTechBridgeIllustration,
   HeroProfileIllustration,
+  WorkstationIllustration,
 } from './components/CurriculumIllustrations';
 
 interface Course {
@@ -31,6 +30,12 @@ interface Course {
   category: 'avamec' | 'parceiros' | 'lattes';
   area: string;
 }
+
+const WHATSAPP_URL =
+  'https://wa.me/5588997204035?text=Ol%C3%A1%2C%20Wemerson!%20Acessei%20seu%20curr%C3%ADculo%20profissional%20e%20gostaria%20de%20conversar%20com%20voc%C3%AA.';
+
+const INSTAGRAM_URL = 'https://www.instagram.com/wemerson.bastos7/';
+const LINKEDIN_URL = 'https://www.linkedin.com/in/wemerson-bastos-129451252';
 
 const techStripItems = [
   'HTML5 & CSS3',
@@ -283,224 +288,51 @@ const courses: Course[] = [
 ];
 
 const languages = [
-  { language: 'Português', level: 'Nativo', detail: 'Comunicação acadêmica, técnica e institucional' },
-  { language: 'Espanhol', level: 'Intermediário', detail: 'Leitura técnica e conversação intermediária' },
-  { language: 'Inglês', level: 'Básico', detail: 'Leitura de documentação técnica e fundamentos' },
+  {
+    language: 'Português',
+    level: 'Nativo',
+    detail: 'Comunicação acadêmica, técnica e institucional',
+  },
+  {
+    language: 'Espanhol',
+    level: 'Intermediário',
+    detail: 'Leitura técnica e conversação intermediária',
+  },
+  {
+    language: 'Inglês',
+    level: 'Básico',
+    detail: 'Leitura de documentação técnica e fundamentos',
+  },
 ];
-
-const readmePreviewContent = `<div align="center">
-
-<!-- Cabeçalho em onda com a paleta azul e ciano (#0878F9 -> #00BFEF) -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0878F9,100:00BFEF&height=220&section=header&text=Wemerson%20Bastos%20Evangelista&fontSize=38&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Professor%20Pedagogo%20Especialista%20%E2%80%A2%20Superintendente%20da%20SME%20de%20Tau%C3%A1%20%E2%80%A2%20Desenvolvimento%20Web%20%26%20IA&descAlignY=58&descSize=16" alt="Wemerson Bastos Evangelista" />
-
-<br />
-
-<!-- Botões em formato de cápsula (estilo referência) -->
-<a href="https://professional-resume-sigma.vercel.app">
-  <img src="https://img.shields.io/badge/Curr%C3%ADculo_Profissional-Acessar_na_Vercel-0878F9?style=for-the-badge&logo=vercel&logoColor=white" alt="Currículo Profissional" />
-</a>
-<a href="https://www.linkedin.com/in/wemerson-bastos-129451252">
-  <img src="https://img.shields.io/badge/LinkedIn-Conectar_no_LinkedIn-00BFEF?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
-</a>
-<a href="mailto:bastos.weeme@gmail.com">
-  <img src="https://img.shields.io/badge/E--mail-bastos.weeme%40gmail.com-0878F9?style=for-the-badge&logo=gmail&logoColor=white" alt="E-mail" />
-</a>
-<a href="tel:+5588997204035">
-  <img src="https://img.shields.io/badge/Telefone-(88)_99720--4035-15115A?style=for-the-badge&logo=whatsapp&logoColor=white" alt="Telefone" />
-</a>
-
-</div>
-
-<br />
-
-<!-- 2. FAIXA COMPACTA DE TECNOLOGIAS E DOMÍNIOS -->
-<div align="center">
-
-![HTML5](https://img.shields.io/badge/HTML5-0878F9?style=flat-square&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-0878F9?style=flat-square&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-0878F9?style=flat-square&logo=javascript&logoColor=white)
-![No-Code](https://img.shields.io/badge/No--Code-00BFEF?style=flat-square)
-![UX/UI](https://img.shields.io/badge/UX%2FUI_Design-00BFEF?style=flat-square&logo=figma&logoColor=white)
-![Machine Learning](https://img.shields.io/badge/Machine_Learning_%26_IA-15115A?style=flat-square)
-![Análise de Dados](https://img.shields.io/badge/Modelagem_e_An%C3%A1lise_de_Dados-15115A?style=flat-square)
-![Tecnologias Educacionais](https://img.shields.io/badge/Tecnologias_Educacionais_(BNCC)-0878F9?style=flat-square)
-![Google for Education](https://img.shields.io/badge/Google_for_Education-00BFEF?style=flat-square&logo=google&logoColor=white)
-
-</div>
-
----
-
-## 📌 Sobre Mim
-
-Sou **Professor Pedagogo Especialista** com expertise em **Tecnologia da Informação**, atuando nas áreas de **Desenvolvimento Web, Machine Learning e Tecnologias Educacionais**.
-
-Desde 2018, faço parte da rede municipal de ensino de Tauá-CE e, atualmente, sou **Superintendente da SME de Tauá**. Atualmente estou cursando **Análise e Desenvolvimento de Sistemas** pela **Universidade Descomplica**.
-
-Minha trajetória é guiada por um propósito claro: construir **pontes entre a educação e a tecnologia**, criando soluções inteligentes que ampliem o alcance do conhecimento, personalizem o aprendizado e tornem o processo educacional mais inclusivo, dinâmico e eficaz.
-
-Acredito que o futuro da educação está na capacidade de integrar práticas pedagógicas sólidas com recursos tecnológicos de ponta, transformando salas de aula, treinamentos e ambientes corporativos em espaços vivos de inovação e impacto social.
-
-> 💡 *"Cada linha de código que escrevo é um passo rumo ao futuro que escolhi construir — unindo conhecimento, propósito e inovação."*
-
-📄 **Confira meu currículo profissional completo online:** [professional-resume-sigma.vercel.app](https://professional-resume-sigma.vercel.app)
-
----
-
-## 🛠️ Competências e Áreas de Atuação
-
-<table>
-  <tr>
-    <td width="33%" valign="top">
-      <h3 align="center">💻 Desenvolvimento Web</h3>
-      <ul>
-        <li>HTML, CSS, JavaScript</li>
-        <li>No-code</li>
-        <li>UX/UI</li>
-      </ul>
-    </td>
-    <td width="33%" valign="top">
-      <h3 align="center">🤖 Machine Learning Engineer</h3>
-      <ul>
-        <li>Fundamentos de IA e aprendizado de máquina</li>
-        <li>Modelagem e análise de dados</li>
-        <li>Aplicações educacionais inteligentes</li>
-      </ul>
-    </td>
-    <td width="33%" valign="top">
-      <h3 align="center">🎓 Desenvolvedor Educacional</h3>
-      <ul>
-        <li>Criação de plataformas e jogos educacionais</li>
-        <li>Uso de tecnologias para engajamento e personalização</li>
-        <li>Adequação à BNCC e metodologias ativas</li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td width="33%" valign="top">
-      <h3 align="center">🏢 Pedagogo Empresarial</h3>
-      <ul>
-        <li>Treinamentos corporativos</li>
-        <li>Desenvolvimento de equipes</li>
-        <li>Gestão de aprendizagem organizacional</li>
-      </ul>
-    </td>
-    <td width="33%" valign="top">
-      <h3 align="center">📚 Pedagogo Especializado</h3>
-      <ul>
-        <li>Alfabetização e letramento</li>
-        <li>Psicomotricidade e desenvolvimento humano</li>
-        <li>Educação inclusiva e recursos digitais</li>
-      </ul>
-    </td>
-    <td width="33%" valign="top">
-      <h3 align="center">🖥️ Graduação em Curso</h3>
-      <ul>
-        <li><strong>Análise e Desenvolvimento de Sistemas</strong></li>
-        <li>Universidade Descomplica</li>
-      </ul>
-    </td>
-  </tr>
-</table>
-
----
-
-## 🏛️ Experiência e Gestão Pública
-
-<details open>
-  <summary><strong>Superintendente da SME de Tauá — Rede Municipal de Ensino de Tauá-CE (Desde 2018 na rede)</strong></summary>
-  <br />
-  <ul>
-    <li><strong>Políticas Públicas:</strong> Gestão de políticas públicas educacionais no município de Tauá-CE.</li>
-    <li><strong>Estratégia e Inovação:</strong> Planejamento estratégico e inovação voltados à rede de ensino.</li>
-    <li><strong>Gestão Integrada:</strong> Acompanhamento pedagógico e administrativo.</li>
-  </ul>
-</details>
-
-<details>
-  <summary><strong>Soluções e Frentes de Desenvolvimento Educacional</strong></summary>
-  <br />
-  <ul>
-    <li><strong>Plataformas e Jogos Educacionais:</strong> Recursos interativos voltados ao engajamento, personalização e alinhamento à BNCC e metodologias ativas.</li>
-    <li><strong>Aplicações Educacionais Inteligentes:</strong> Integração de fundamentos de IA, Machine Learning e modelagem de dados na educação.</li>
-    <li><strong>Desenvolvimento Web & No-Code:</strong> Construção de interfaces acessíveis com HTML, CSS, JavaScript, UX/UI e ferramentas No-code.</li>
-    <li><strong>Educação Inclusiva e Corporativa:</strong> Treinamentos corporativos, alfabetização, psicomotricidade e tecnologias assistivas/digitais.</li>
-  </ul>
-</details>
-
----
-
-## 📜 Cursos e Formações Complementares
-
-| Curso / Formação | Instituição Certificadora | Eixo Temático |
-| :--- | :---: | :--- |
-| **Formação Continuada em Educação Infantil** | \`AVAMEC/MEC\` | Educação Básica |
-| **Formação em Alfabetização e Letramento** | \`AVAMEC/MEC\` | Alfabetização |
-| **Formação em Educação Especial e Inclusiva** | \`AVAMEC/MEC\` | Educação Inclusiva |
-| **Gestão Democrática e Participativa na Escola** | \`MEC\` | Gestão Escolar |
-| **Metodologias Ativas e Ensino Híbrido** | \`Google for Education\` | Inovação e Tecnologia |
-| **Psicomotricidade na Educação Básica** | \`Plataforma Lattes\` | Desenvolvimento Humano |
-| **Tecnologias Digitais Aplicadas à Educação** | \`AVAMEC/MEC\` | Tecnologias Educacionais |
-| **Avaliação Educacional e da Aprendizagem** | \`AVAMEC/MEC\` | Gestão Pedagógica |
-| **Educação Socioemocional** | \`Instituto Ayrton Senna\` | Formação Integral |
-| **Planejamento e Gestão Escolar** | \`AVAMEC/MEC\` | Planejamento Estratégico |
-| **Educação Ambiental e Sustentabilidade** | \`Plataforma Lattes\` | Sustentabilidade |
-| **Formação de Gestores e Supervisores Escolares** | \`AVAMEC/MEC\` | Liderança Educacional |
-
----
-
-## 🌍 Idiomas
-
-<div align="center">
-
-![Português](https://img.shields.io/badge/🇧🇷_Português-Nativo-0878F9?style=for-the-badge)
-![Espanhol](https://img.shields.io/badge/🇪🇸_Espanhol-Intermediário-00BFEF?style=for-the-badge)
-![Inglês](https://img.shields.io/badge/🇺🇸_Inglês-Básico-15115A?style=for-the-badge)
-
-</div>
-
----
-
-## 📫 Contato e Links Profissionais
-
-<div align="center">
-
-💬 *Aberto a colaborações e projetos que envolvam tecnologia, educação e impacto social.*
-
-| Canal | Link / Contato Direto |
-| :--- | :--- |
-| **Currículo Profissional (Web)** | [professional-resume-sigma.vercel.app](https://professional-resume-sigma.vercel.app) |
-| **E-mail** | [bastos.weeme@gmail.com](mailto:bastos.weeme@gmail.com) |
-| **Telefone / WhatsApp** | (88) 99720-4035 |
-| **LinkedIn** | [linkedin.com/in/wemerson-bastos-129451252](https://www.linkedin.com/in/wemerson-bastos-129451252) |
-
-<br />
-
-<!-- Rodapé em onda com azul profundo (#15115A -> #0878F9) -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:15115A,100:0878F9&height=110&section=footer" alt="Rodapé" />
-
-</div>`;
 
 export default function App() {
   const [openAccordion, setOpenAccordion] = useState<string>('sme-taua');
-  const [courseFilter, setCourseFilter] = useState<'all' | 'avamec' | 'parceiros' | 'lattes'>('all');
+  const [courseFilter, setCourseFilter] = useState<'all' | 'avamec' | 'parceiros' | 'lattes'>(
+    'all',
+  );
   const [copiedField, setCopiedField] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [readmeModalOpen, setReadmeModalOpen] = useState(false);
 
-  // Motion & IntersectionObserver State
-  const [motionEnabled, setMotionEnabled] = useState(true);
-  const [heroIllusActive, setHeroIllusActive] = useState(false);
-  const [isHeroInView, setIsHeroInView] = useState(true);
+  // Reveal & Parallax state
+  const [heroIllusRevealed, setHeroIllusRevealed] = useState(false);
   const [visibleSections, setVisibleSections] = useState<Record<string, boolean>>({});
+  const [parallaxOffsets, setParallaxOffsets] = useState({
+    heroBg: 0,
+    heroDetail: 0,
+    sobreBg: 0,
+    atuacaoBg: 0,
+    atuacaoDetail: 0,
+  });
 
-  const heroRef = useRef<HTMLElement | null>(null);
+  const heroSectionRef = useRef<HTMLElement | null>(null);
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
+  const activeViewportSections = useRef<Record<string, boolean>>({ hero: true });
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (mediaQuery.matches) {
-      setMotionEnabled(false);
-      setHeroIllusActive(true);
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      setHeroIllusRevealed(true);
       setVisibleSections({
         pilares: true,
         sobre: true,
@@ -512,25 +344,19 @@ export default function App() {
       return;
     }
 
-    // Activate Hero Illustration smoothly on first frame without delaying main text
-    const timer = window.requestAnimationFrame(() => {
-      setHeroIllusActive(true);
-    });
+    // Double requestAnimationFrame + brief delay ensures browser paints initial state before transitioning
+    let raf1 = 0;
+    let raf2 = 0;
+    const timer = window.setTimeout(() => {
+      raf1 = window.requestAnimationFrame(() => {
+        raf2 = window.requestAnimationFrame(() => {
+          setHeroIllusRevealed(true);
+        });
+      });
+    }, 60);
 
-    // Observe Hero visibility to pause ambient float when outside viewport
-    const heroObserver = new IntersectionObserver(
-      ([entry]) => {
-        setIsHeroInView(entry.isIntersecting);
-      },
-      { threshold: 0.05 },
-    );
-
-    if (heroRef.current) {
-      heroObserver.observe(heroRef.current);
-    }
-
-    // Observe each section once for gentle entry reveal
-    const sectionObserver = new IntersectionObserver(
+    // Observer 1: One-time entry reveal for sections
+    const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const sectionKey = entry.target.getAttribute('data-reveal-section');
@@ -538,21 +364,91 @@ export default function App() {
             setVisibleSections((prev) =>
               prev[sectionKey] ? prev : { ...prev, [sectionKey]: true },
             );
-            sectionObserver.unobserve(entry.target);
+            revealObserver.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.14, rootMargin: '0px 0px -36px 0px' },
+      { threshold: 0.15, rootMargin: '0px 0px -8% 0px' },
     );
 
+    // Observer 2: Track which illustrated sections are currently in viewport to suspend offscreen parallax
+    const parallaxVisibilityObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const key = entry.target.getAttribute('data-parallax-section');
+          if (key) {
+            activeViewportSections.current[key] = entry.isIntersecting;
+          }
+        });
+      },
+      { threshold: 0.01, rootMargin: '100px 0px 100px 0px' },
+    );
+
+    if (heroSectionRef.current) {
+      parallaxVisibilityObserver.observe(heroSectionRef.current);
+    }
+
     Object.values(sectionRefs.current).forEach((node) => {
-      if (node) sectionObserver.observe(node);
+      if (node) {
+        revealObserver.observe(node);
+        if (node.hasAttribute('data-parallax-section')) {
+          parallaxVisibilityObserver.observe(node);
+        }
+      }
     });
 
+    // Throttled scroll listener using requestAnimationFrame for strategic parallax
+    let scrollTicking = false;
+    const updateParallax = () => {
+      scrollTicking = false;
+      const viewportHeight = window.innerHeight || 800;
+      const isMobile = window.innerWidth < 768;
+      const maxShift = isMobile ? 9 : 22;
+
+      const computeNormalizedOffset = (el: HTMLElement | null): number => {
+        if (!el) return 0;
+        const rect = el.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const deltaFromCenter = (viewportHeight / 2 - center) / (viewportHeight / 2);
+        return Math.max(-1, Math.min(1, deltaFromCenter));
+      };
+
+      const heroNorm = activeViewportSections.current.hero
+        ? computeNormalizedOffset(heroSectionRef.current)
+        : 0;
+      const sobreNorm = activeViewportSections.current.sobre
+        ? computeNormalizedOffset(sectionRefs.current.sobre)
+        : 0;
+      const atuacaoNorm = activeViewportSections.current.atuacao
+        ? computeNormalizedOffset(sectionRefs.current.atuacao)
+        : 0;
+
+      setParallaxOffsets({
+        heroBg: Math.round(heroNorm * maxShift * 0.85),
+        heroDetail: Math.round(heroNorm * maxShift * 0.55),
+        sobreBg: Math.round(sobreNorm * maxShift * 0.75),
+        atuacaoBg: Math.round(atuacaoNorm * maxShift * 0.8),
+        atuacaoDetail: Math.round(atuacaoNorm * -maxShift * 0.5),
+      });
+    };
+
+    const onScroll = () => {
+      if (!scrollTicking) {
+        scrollTicking = true;
+        window.requestAnimationFrame(updateParallax);
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    updateParallax();
+
     return () => {
-      window.cancelAnimationFrame(timer);
-      heroObserver.disconnect();
-      sectionObserver.disconnect();
+      window.clearTimeout(timer);
+      window.cancelAnimationFrame(raf1);
+      window.cancelAnimationFrame(raf2);
+      window.removeEventListener('scroll', onScroll);
+      revealObserver.disconnect();
+      parallaxVisibilityObserver.disconnect();
     };
   }, []);
 
@@ -560,10 +456,8 @@ export default function App() {
     sectionRefs.current[key] = el;
   };
 
-  const getRevealClass = (key: string) => {
-    if (!motionEnabled) return 'reveal-visible';
-    return visibleSections[key] ? 'reveal-ready reveal-visible' : 'reveal-ready';
-  };
+  const getRevealClass = (key: string) =>
+    visibleSections[key] ? 'reveal-item is-revealed' : 'reveal-item';
 
   const filteredCourses =
     courseFilter === 'all'
@@ -581,13 +475,18 @@ export default function App() {
   };
 
   return (
-    <div className={`min-h-screen bg-white text-[#15115A] ${!motionEnabled ? 'motion-disabled' : ''}`}>
-      {/* HERO & TOP BAR (Blue-to-Cyan Gradient with Harmonized Planes) */}
+    <div className="min-h-screen bg-white text-[#15115A]">
+      {/* HERO & TOP BAR */}
       <div className="relative overflow-hidden bg-gradient-to-br from-[#0878F9] via-[#0789F6] to-[#00BFEF] text-white">
-        {/* Subtle Layered Diagonal Shapes */}
+        {/* Decorative Background Layer with Subtle Parallax */}
         <svg
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 h-full w-full opacity-20"
+          style={
+            {
+              '--parallax-offset': `${-parallaxOffsets.heroBg * 0.6}px`,
+            } as React.CSSProperties
+          }
+          className="parallax-layer pointer-events-none absolute inset-0 h-full w-full opacity-20"
           viewBox="0 0 1440 700"
           fill="none"
           preserveAspectRatio="none"
@@ -597,7 +496,7 @@ export default function App() {
         </svg>
 
         {/* Top Bar Contract: 3 zones (Brand | 5 Nav Links | 1 Primary Action) */}
-        <header className="relative z-20 mx-auto flex max-w-6xl items-center justify-between gap-8 px-6 py-6">
+        <header className="relative z-20 mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-6 sm:px-6 lg:px-8">
           <a
             href="#topo"
             id="topo"
@@ -608,7 +507,7 @@ export default function App() {
 
           <nav
             aria-label="Navegação principal"
-            className="hidden md:flex items-center gap-7 text-sm font-medium text-white/95"
+            className="hidden md:flex items-center gap-8 text-sm font-medium text-white/95"
           >
             <a
               href="#sobre"
@@ -666,7 +565,7 @@ export default function App() {
         {mobileMenuOpen && (
           <nav
             aria-label="Menu móvel"
-            className="relative z-20 mx-6 mb-4 rounded-2xl border border-white/20 bg-[#0767D8]/95 p-5 backdrop-blur-md md:hidden"
+            className="relative z-20 mx-4 mb-4 rounded-2xl border border-white/20 bg-[#0767D8]/95 p-5 backdrop-blur-md sm:mx-6 md:hidden"
           >
             <div className="flex flex-col gap-3 text-sm font-medium text-white">
               <a
@@ -717,15 +616,16 @@ export default function App() {
 
         {/* 1. HERO CONTENT: Immediately available text/buttons on left + ILUSTRAÇÃO 1 on right */}
         <section
-          ref={heroRef}
-          className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-6 pt-8 pb-20 md:grid-cols-12 md:pt-12 md:pb-24"
+          ref={heroSectionRef}
+          data-parallax-section="hero"
+          className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-4 pt-8 pb-16 sm:px-6 md:grid-cols-12 md:pt-12 md:pb-24 lg:px-8"
         >
           <div className="md:col-span-7">
             <p className="text-sm font-medium tracking-wide text-[#E0F4FF]">
               Wemerson Bastos Evangelista · Tauá-CE
             </p>
 
-            <h1 className="mt-3 font-display text-4xl leading-[1.15] tracking-tight text-white sm:text-5xl lg:text-[3.35rem] [text-wrap:balance]">
+            <h1 className="mt-3 font-display text-3xl leading-[1.15] tracking-tight text-white sm:text-5xl lg:text-[3.35rem] [text-wrap:balance]">
               <span className="block font-bold">Educação e Tecnologia</span>
               <span className="mt-1 block font-normal text-[#E5F7FF]">
                 unidas por propósito e inovação
@@ -743,7 +643,7 @@ export default function App() {
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <a
                 href="#formacao"
-                className="btn-interactive inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-[#0878F9] shadow-lg shadow-[#054494]/20 hover:bg-[#F5FBFF] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                className="btn-interactive inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-[#0878F9] shadow-lg shadow-[#054494]/20 hover:bg-[#F5FBFF] sm:px-7 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 <span>Trajetória Acadêmica e Profissional</span>
               </a>
@@ -763,9 +663,9 @@ export default function App() {
           {/* Right Column: ILUSTRAÇÃO 1 — Apresentação Profissional */}
           <div className="relative flex items-center justify-center md:col-span-5">
             <HeroProfileIllustration
-              isActive={heroIllusActive}
-              isHeroVisible={isHeroInView}
-              motionEnabled={motionEnabled}
+              isRevealed={heroIllusRevealed}
+              parallaxBgOffset={parallaxOffsets.heroBg}
+              parallaxDetailOffset={parallaxOffsets.heroDetail}
             />
           </div>
         </section>
@@ -774,10 +674,10 @@ export default function App() {
       {/* 2. COMPACT TECHNOLOGIES BAND */}
       <section
         aria-label="Tecnologias e áreas de domínio"
-        className="border-b border-[#CBE4FF] bg-[#D9EFFF] py-5"
+        className="border-b border-[#CBE4FF] bg-[#D9EFFF] py-6"
       >
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-center">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-center sm:gap-x-8">
             {techStripItems.map((tech, index) => (
               <div key={tech} className="flex items-center gap-3">
                 <span className="font-display text-sm font-semibold tracking-tight text-[#0878F9] sm:text-base whitespace-nowrap">
@@ -798,14 +698,14 @@ export default function App() {
       <section
         ref={registerSectionRef('pilares')}
         data-reveal-section="pilares"
-        className="relative bg-[#EAF6FF] pt-16 pb-20"
+        className="relative bg-[#EAF6FF] pt-16 pb-24 md:pt-24 md:pb-28"
       >
-        <div className="mx-auto max-w-5xl px-6">
-          <div className="grid gap-10 md:grid-cols-3">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-8 md:grid-cols-3 md:gap-12">
             {corePillars.map((pillar, idx) => (
               <div
                 key={pillar.id}
-                style={{ '--reveal-delay': `${idx * 80}ms` } as React.CSSProperties}
+                style={{ '--reveal-delay': `${idx * 95}ms` } as React.CSSProperties}
                 className={`flex flex-col items-center text-center ${getRevealClass('pilares')}`}
               >
                 <div className="relative flex h-28 w-28 items-center justify-center rounded-full bg-[#D6ECFF]">
@@ -820,7 +720,7 @@ export default function App() {
                 <h2 className="mt-6 font-display text-lg font-bold text-[#0878F9]">
                   {pillar.title}
                 </h2>
-                <p className="mt-2.5 max-w-xs text-sm leading-relaxed text-[#4A5578]">
+                <p className="mt-3 max-w-xs text-sm leading-relaxed text-[#4A5578]">
                   {pillar.description}
                 </p>
               </div>
@@ -828,7 +728,7 @@ export default function App() {
           </div>
 
           <div
-            style={{ '--reveal-delay': '240ms' } as React.CSSProperties}
+            style={{ '--reveal-delay': '280ms' } as React.CSSProperties}
             className={`mt-12 text-center ${getRevealClass('pilares')}`}
           >
             <a
@@ -859,9 +759,10 @@ export default function App() {
         id="sobre"
         ref={registerSectionRef('sobre')}
         data-reveal-section="sobre"
-        className="scroll-mt-20 bg-white py-20"
+        data-parallax-section="sobre"
+        className="scroll-mt-20 bg-white py-16 md:py-24"
       >
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className={`mx-auto max-w-3xl text-center ${getRevealClass('sobre')}`}>
             <h2 className="font-display text-3xl font-bold tracking-tight text-[#0878F9] sm:text-4xl [text-wrap:balance]">
               Construindo pontes entre a educação e a tecnologia
@@ -884,7 +785,7 @@ export default function App() {
           {/* Central Interface Hub (ILUSTRAÇÃO 3) flanked by the 6 Real Competency Blocks */}
           <div
             id="competencias"
-            className="scroll-mt-20 mt-16 grid items-center gap-10 lg:grid-cols-12"
+            className="scroll-mt-20 mt-12 grid items-center gap-12 md:mt-16 lg:grid-cols-12"
           >
             {/* Left 3 Competencies */}
             <div className="space-y-8 lg:col-span-4">
@@ -893,19 +794,19 @@ export default function App() {
                 return (
                   <div
                     key={item.title}
-                    style={{ '--reveal-delay': `${(idx + 1) * 80}ms` } as React.CSSProperties}
+                    style={{ '--reveal-delay': `${(idx + 1) * 90}ms` } as React.CSSProperties}
                     className={`flex items-start gap-4 lg:flex-row-reverse lg:text-right ${getRevealClass(
                       'sobre',
                     )}`}
                   >
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#15115A]/15 bg-[#0878F9] text-white shadow-xs">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#15115A] bg-[#0878F9] text-white shadow-xs">
                       <Icon className="h-5 w-5" />
                     </div>
                     <div>
                       <h3 className="font-display text-base font-bold text-[#15115A]">
                         {item.title}
                       </h3>
-                      <p className="mt-1 text-xs leading-relaxed text-[#526080]">
+                      <p className="mt-1.5 text-sm leading-relaxed text-[#526080]">
                         {item.description}
                       </p>
                     </div>
@@ -917,7 +818,8 @@ export default function App() {
             {/* Center: ILUSTRAÇÃO 3 — Educação e Tecnologia */}
             <div className="flex justify-center lg:col-span-4">
               <EducationTechBridgeIllustration
-                isActive={!motionEnabled || Boolean(visibleSections.sobre)}
+                isRevealed={Boolean(visibleSections.sobre)}
+                parallaxBgOffset={parallaxOffsets.sobreBg}
               />
             </div>
 
@@ -928,17 +830,17 @@ export default function App() {
                 return (
                   <div
                     key={item.title}
-                    style={{ '--reveal-delay': `${(idx + 2) * 80}ms` } as React.CSSProperties}
+                    style={{ '--reveal-delay': `${(idx + 2) * 90}ms` } as React.CSSProperties}
                     className={`flex items-start gap-4 ${getRevealClass('sobre')}`}
                   >
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#15115A]/15 bg-[#0878F9] text-white shadow-xs">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-2 border-[#15115A] bg-[#0878F9] text-white shadow-xs">
                       <Icon className="h-5 w-5" />
                     </div>
                     <div>
                       <h3 className="font-display text-base font-bold text-[#15115A]">
                         {item.title}
                       </h3>
-                      <p className="mt-1 text-xs leading-relaxed text-[#526080]">
+                      <p className="mt-1.5 text-sm leading-relaxed text-[#526080]">
                         {item.description}
                       </p>
                     </div>
@@ -950,30 +852,33 @@ export default function App() {
         </div>
       </section>
 
-      {/* 5. EXPERIÊNCIA E ATUAÇÃO (Soft Ice Blue Section with ILUSTRAÇÃO 2 — Colaboração e Conhecimento) */}
+      {/* 5. EXPERIÊNCIA E ATUAÇÃO (Soft Ice Blue Section with NOVA ILUSTRAÇÃO — Mesa de Trabalho) */}
       <section
         id="atuacao"
         ref={registerSectionRef('atuacao')}
         data-reveal-section="atuacao"
-        className="scroll-mt-20 bg-[#EAF6FF] py-20"
+        data-parallax-section="atuacao"
+        className="scroll-mt-20 bg-[#EAF6FF] py-16 md:py-24"
       >
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className={`mx-auto max-w-2xl text-center ${getRevealClass('atuacao')}`}>
             <h2 className="font-display text-3xl font-bold tracking-tight text-[#0878F9] sm:text-4xl">
               Integrando pedagogia, gestão e código
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-[#4A5578] sm:text-base">
+            <p className="mt-4 text-sm leading-relaxed text-[#4A5578] sm:text-base">
               Acredito que o futuro da educação está na capacidade de integrar práticas pedagógicas
               sólidas com recursos tecnológicos de ponta, transformando salas de aula, treinamentos
               e ambientes corporativos em espaços vivos de inovação e impacto social.
             </p>
           </div>
 
-          <div className="mt-14 grid items-center gap-12 lg:grid-cols-12">
-            {/* Left: ILUSTRAÇÃO 2 — Colaboração e Conhecimento */}
+          <div className="mt-12 grid items-center gap-12 md:mt-16 lg:grid-cols-12">
+            {/* Left: NOVA ILUSTRAÇÃO — Estação de Trabalho (Notebook, Livro, Documento e Código) */}
             <div className="flex justify-center lg:col-span-5">
-              <CollaborationKnowledgeIllustration
-                isActive={!motionEnabled || Boolean(visibleSections.atuacao)}
+              <WorkstationIllustration
+                isRevealed={Boolean(visibleSections.atuacao)}
+                parallaxBgOffset={parallaxOffsets.atuacaoBg}
+                parallaxDetailOffset={parallaxOffsets.atuacaoDetail}
               />
             </div>
 
@@ -984,7 +889,7 @@ export default function App() {
                 return (
                   <div
                     key={item.id}
-                    style={{ '--reveal-delay': `${(idx + 1) * 75}ms` } as React.CSSProperties}
+                    style={{ '--reveal-delay': `${(idx + 1) * 85}ms` } as React.CSSProperties}
                     className={`card-interactive rounded-2xl border border-[#C9E5FF] bg-[#F7FBFF] hover:border-[#0878F9]/40 hover:shadow-md hover:shadow-[#0878F9]/10 ${getRevealClass(
                       'atuacao',
                     )}`}
@@ -993,7 +898,7 @@ export default function App() {
                       type="button"
                       onClick={() => setOpenAccordion(isOpen ? '' : item.id)}
                       aria-expanded={isOpen}
-                      className="flex w-full items-center justify-between gap-4 rounded-2xl px-5 py-4 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9]"
+                      className="flex w-full items-center justify-between gap-4 rounded-2xl px-6 py-4 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9]"
                     >
                       <div className="flex items-start gap-4">
                         <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-[#0878F9] text-white">
@@ -1003,7 +908,9 @@ export default function App() {
                           <h3 className="font-display text-base font-bold text-[#15115A]">
                             {item.title}
                           </h3>
-                          <p className="mt-0.5 text-xs text-[#526080]">{item.summary}</p>
+                          <p className="mt-1 text-xs leading-relaxed text-[#526080]">
+                            {item.summary}
+                          </p>
                         </div>
                       </div>
                       <ChevronDown
@@ -1014,8 +921,8 @@ export default function App() {
                     </button>
 
                     {isOpen && (
-                      <div className="border-t border-[#DDF0FF] px-5 pt-3 pb-5 pl-16">
-                        <ul className="space-y-2 text-xs leading-relaxed text-[#3E4C6E] sm:text-sm">
+                      <div className="border-t border-[#DDF0FF] px-6 pt-4 pb-5 pl-16">
+                        <ul className="space-y-2.5 text-xs leading-relaxed text-[#3E4C6E] sm:text-sm">
                           {item.details.map((detail) => (
                             <li key={detail} className="flex items-start gap-2.5">
                               <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#0878F9]" />
@@ -1033,14 +940,14 @@ export default function App() {
         </div>
       </section>
 
-      {/* 6. FRENTES DE DESENVOLVIMENTO E SOLUÇÕES (White Section: Informational Cards remain stable) */}
+      {/* 6. FRENTES DE DESENVOLVIMENTO E SOLUÇÕES */}
       <section
         id="solucoes"
         ref={registerSectionRef('solucoes')}
         data-reveal-section="solucoes"
-        className="scroll-mt-20 bg-white py-24"
+        className="scroll-mt-20 bg-white py-16 md:py-24"
       >
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-start gap-12 lg:grid-cols-12">
             {/* Left Editorial Column */}
             <div className={`lg:col-span-4 lg:sticky lg:top-10 ${getRevealClass('solucoes')}`}>
@@ -1055,59 +962,51 @@ export default function App() {
                 Aberto a colaborações e projetos que envolvam tecnologia, educação e impacto social.
               </p>
 
-              <div className="mt-7 flex flex-wrap gap-3">
+              <div className="mt-8">
                 <a
                   href="#contato"
-                  className="btn-interactive inline-flex items-center justify-center rounded-full bg-[#0878F9] px-7 py-3 text-xs font-semibold text-white shadow-md shadow-[#0878F9]/20 hover:bg-[#0663D0] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9]"
+                  className="btn-interactive inline-flex items-center justify-center rounded-full bg-[#0878F9] px-7 py-3.5 text-xs font-semibold text-white shadow-md shadow-[#0878F9]/20 hover:bg-[#0663D0] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9]"
                 >
                   Propor Colaboração
                 </a>
-                <button
-                  type="button"
-                  onClick={() => setReadmeModalOpen(true)}
-                  className="btn-interactive inline-flex items-center gap-2 rounded-full border border-[#BFE2FF] bg-[#F2F9FF] px-5 py-3 text-xs font-semibold text-[#0878F9] hover:bg-[#E0F2FF] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9]"
-                >
-                  <FileText className="h-3.5 w-3.5" />
-                  <span>Ver README.md</span>
-                </button>
               </div>
             </div>
 
-            {/* Right 2x2 Informational Card Grid (Stable appearance) */}
-            <div className="grid gap-7 sm:grid-cols-2 lg:col-span-8">
+            {/* Right 2x2 Informational Card Grid */}
+            <div className="grid gap-6 sm:grid-cols-2 md:gap-8 lg:col-span-8">
               {solutionCards.map((card, idx) => (
                 <article
                   key={card.title}
-                  style={{ '--reveal-delay': `${(idx + 1) * 80}ms` } as React.CSSProperties}
-                  className={`flex flex-col items-center rounded-2xl border border-[#E6F2FF] bg-white p-8 text-center shadow-[0_14px_40px_-12px_rgba(8,120,249,0.12)] ${getRevealClass(
+                  style={{ '--reveal-delay': `${(idx + 1) * 90}ms` } as React.CSSProperties}
+                  className={`flex flex-col items-center rounded-2xl border border-[#E6F2FF] bg-white p-6 text-center shadow-[0_14px_40px_-12px_rgba(8,120,249,0.12)] sm:p-8 ${getRevealClass(
                     'solucoes',
                   )}`}
                 >
                   <div className="flex h-24 w-24 items-center justify-center rounded-full bg-[#EAF6FF]">
                     {card.type === 'platform' && (
-                      <div className="flex h-14 w-12 flex-col items-center justify-center rounded-xl border border-[#15115A]/20 bg-[#0878F9] text-white shadow-xs">
+                      <div className="flex h-14 w-12 flex-col items-center justify-center rounded-xl border-2 border-[#15115A] bg-[#0878F9] text-white shadow-xs">
                         <GraduationCap className="h-6 w-6 text-white" />
                       </div>
                     )}
                     {card.type === 'ml' && (
-                      <div className="flex h-14 w-12 flex-col items-center justify-center rounded-xl bg-[#15115A] text-white shadow-xs">
+                      <div className="flex h-14 w-12 flex-col items-center justify-center rounded-xl border-2 border-[#15115A] bg-[#15115A] text-white shadow-xs">
                         <BrainCircuit className="h-6 w-6 text-[#00BFEF]" />
                       </div>
                     )}
                     {card.type === 'web' && (
-                      <div className="flex h-14 w-12 flex-col items-center justify-center rounded-xl border border-[#15115A]/20 bg-[#0878F9] text-white shadow-xs">
+                      <div className="flex h-14 w-12 flex-col items-center justify-center rounded-xl border-2 border-[#15115A] bg-[#0878F9] text-white shadow-xs">
                         <Code2 className="h-6 w-6 text-white" />
                       </div>
                     )}
                     {card.type === 'inclusion' && (
-                      <div className="flex h-14 w-12 flex-col items-center justify-center rounded-xl bg-[#15115A] text-white shadow-xs">
+                      <div className="flex h-14 w-12 flex-col items-center justify-center rounded-xl border-2 border-[#15115A] bg-[#15115A] text-white shadow-xs">
                         <Landmark className="h-6 w-6 text-[#00BFEF]" />
                       </div>
                     )}
                   </div>
 
                   <p className="mt-5 text-xs font-medium text-[#5A6B8C]">{card.subtitle}</p>
-                  <h3 className="mt-1 font-display text-lg font-bold text-[#0878F9]">
+                  <h3 className="mt-1.5 font-display text-lg font-bold text-[#0878F9]">
                     {card.title}
                   </h3>
                   <p className="mt-3 text-xs leading-relaxed text-[#526080] sm:text-sm">
@@ -1125,37 +1024,41 @@ export default function App() {
         id="formacao"
         ref={registerSectionRef('formacao')}
         data-reveal-section="formacao"
-        className="scroll-mt-20 relative bg-[#EAF6FF] py-20"
+        className="scroll-mt-20 relative bg-[#EAF6FF] py-16 md:py-24"
       >
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className={`mx-auto max-w-2xl text-center ${getRevealClass('formacao')}`}>
             <h2 className="font-display text-3xl font-bold text-[#0878F9] sm:text-4xl">
               Trajetória Acadêmica e Profissional
             </h2>
-            <p className="mt-2 text-sm text-[#4A5578]">
+            <p className="mt-3 text-sm text-[#4A5578] sm:text-base">
               Evolução contínua entre docência, gestão pública municipal e engenharia de sistemas
             </p>
           </div>
 
-          <div className="mt-14 grid gap-10 md:grid-cols-3">
+          {/* 3-Step Trajectory with Widened, Unclipped Badges & Non-Overlapping Number Circles */}
+          <div className="mt-12 grid gap-8 md:mt-16 md:grid-cols-3 md:gap-10">
             {trajectorySteps.map((item, idx) => (
               <div
                 key={item.step}
-                style={{ '--reveal-delay': `${(idx + 1) * 80}ms` } as React.CSSProperties}
+                style={{ '--reveal-delay': `${(idx + 1) * 90}ms` } as React.CSSProperties}
                 className={`flex flex-col items-center text-center ${getRevealClass('formacao')}`}
               >
-                <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-[#D6ECFF]">
-                  <span className="absolute -left-2 top-2 flex h-8 w-8 items-center justify-center rounded-full border border-[#CBE4FF] bg-white font-display text-sm font-bold text-[#0878F9] shadow-xs">
+                <div className="relative inline-flex min-h-[92px] items-center justify-center rounded-3xl bg-[#D6ECFF] px-6 py-4">
+                  <span
+                    aria-label={`Etapa ${item.step}`}
+                    className="absolute -top-3 -left-3 flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-[#15115A] font-display text-xs font-bold text-white shadow-sm"
+                  >
                     {item.step}
                   </span>
-                  <div className="flex h-12 w-16 items-center justify-center rounded-xl border border-[#15115A]/15 bg-[#0878F9] font-display text-xs font-bold text-white shadow-xs">
+                  <div className="flex h-auto min-w-[148px] max-w-[196px] items-center justify-center rounded-2xl border-2 border-[#15115A] bg-[#0878F9] px-4 py-2.5 text-center font-display text-xs font-bold leading-snug text-white shadow-xs sm:text-sm">
                     {item.period}
                   </div>
                 </div>
-                <h3 className="mt-5 font-display text-base font-bold text-[#0878F9]">
+                <h3 className="mt-6 font-display text-base font-bold text-[#0878F9] sm:text-lg">
                   {item.title}
                 </h3>
-                <p className="mt-2 max-w-xs text-xs leading-relaxed text-[#4A5578] sm:text-sm">
+                <p className="mt-2.5 max-w-xs text-xs leading-relaxed text-[#4A5578] sm:text-sm">
                   {item.description}
                 </p>
               </div>
@@ -1164,25 +1067,25 @@ export default function App() {
 
           {/* Courses Table */}
           <div
-            style={{ '--reveal-delay': '240ms' } as React.CSSProperties}
-            className={`mt-24 ${getRevealClass('formacao')}`}
+            style={{ '--reveal-delay': '260ms' } as React.CSSProperties}
+            className={`mt-20 md:mt-24 ${getRevealClass('formacao')}`}
           >
             <div className="mx-auto max-w-2xl text-center">
               <h2 className="font-display text-3xl font-bold text-[#0878F9] sm:text-4xl">
                 Cursos e Formações Complementares
               </h2>
-              <p className="mt-2 text-sm text-[#4A5578]">
+              <p className="mt-3 text-sm text-[#4A5578] sm:text-base">
                 12 certificações em gestão escolar, tecnologias digitais, inclusão e metodologias
                 ativas
               </p>
             </div>
 
             {/* Interactive Filter Controls */}
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-2.5">
               <button
                 type="button"
                 onClick={() => setCourseFilter('all')}
-                className={`btn-interactive rounded-full px-5 py-2 text-xs font-semibold whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9] ${
+                className={`btn-interactive rounded-full px-5 py-2.5 text-xs font-semibold whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9] ${
                   courseFilter === 'all'
                     ? 'bg-[#0878F9] text-white shadow-xs'
                     : 'bg-white text-[#15115A] hover:bg-[#D8EEFF]'
@@ -1193,7 +1096,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => setCourseFilter('avamec')}
-                className={`btn-interactive rounded-full px-5 py-2 text-xs font-semibold whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9] ${
+                className={`btn-interactive rounded-full px-5 py-2.5 text-xs font-semibold whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9] ${
                   courseFilter === 'avamec'
                     ? 'bg-[#0878F9] text-white shadow-xs'
                     : 'bg-white text-[#15115A] hover:bg-[#D8EEFF]'
@@ -1204,7 +1107,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => setCourseFilter('parceiros')}
-                className={`btn-interactive rounded-full px-5 py-2 text-xs font-semibold whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9] ${
+                className={`btn-interactive rounded-full px-5 py-2.5 text-xs font-semibold whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9] ${
                   courseFilter === 'parceiros'
                     ? 'bg-[#0878F9] text-white shadow-xs'
                     : 'bg-white text-[#15115A] hover:bg-[#D8EEFF]'
@@ -1215,7 +1118,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={() => setCourseFilter('lattes')}
-                className={`btn-interactive rounded-full px-5 py-2 text-xs font-semibold whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9] ${
+                className={`btn-interactive rounded-full px-5 py-2.5 text-xs font-semibold whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9] ${
                   courseFilter === 'lattes'
                     ? 'bg-[#0878F9] text-white shadow-xs'
                     : 'bg-white text-[#15115A] hover:bg-[#D8EEFF]'
@@ -1228,7 +1131,7 @@ export default function App() {
             {/* Blue / Navy / White Table */}
             <div className="mt-8 overflow-hidden rounded-2xl shadow-[0_18px_45px_-15px_rgba(8,120,249,0.18)]">
               <div className="overflow-x-auto">
-                <table className="w-full min-w-[640px] border-collapse text-left">
+                <table className="w-full min-w-[600px] border-collapse text-left">
                   <thead>
                     <tr>
                       <th className="bg-[#0878F9] px-6 py-4 font-display text-sm font-bold text-white">
@@ -1262,8 +1165,8 @@ export default function App() {
               </div>
             </div>
 
-            {/* Idiomas Row (Informational Cards remain stable) */}
-            <div className="mt-12 grid gap-5 sm:grid-cols-3">
+            {/* Idiomas Row */}
+            <div className="mt-12 grid gap-6 sm:grid-cols-3">
               {languages.map((item) => (
                 <div
                   key={item.language}
@@ -1291,9 +1194,9 @@ export default function App() {
         id="contato"
         ref={registerSectionRef('contato')}
         data-reveal-section="contato"
-        className="scroll-mt-20 bg-white py-20"
+        className="scroll-mt-20 bg-white py-16 md:py-24"
       >
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12">
             {/* Left: Author Quote */}
             <div className={`relative lg:col-span-6 ${getRevealClass('contato')}`}>
@@ -1301,14 +1204,14 @@ export default function App() {
                 Propósito e Conexão Profissional
               </h2>
 
-              <div className="mt-4 flex items-center gap-1.5 text-[#0878F9]">
+              <div className="mt-4 flex items-center gap-2 text-[#0878F9]">
                 <Sparkles className="h-5 w-5 text-[#00BFEF]" />
                 <span className="text-xs font-semibold tracking-wide text-[#0878F9]">
                   Educação · Tecnologia · Impacto Social
                 </span>
               </div>
 
-              <blockquote className="relative mt-6 rounded-2xl border border-[#E2F0FF] bg-[#F4FAFF] p-7 text-base leading-relaxed text-[#3E4C6E]">
+              <blockquote className="relative mt-6 rounded-2xl border border-[#E2F0FF] bg-[#F4FAFF] p-6 text-base leading-relaxed text-[#3E4C6E] sm:p-8">
                 <p className="relative z-10 italic">
                   &ldquo;Cada linha de código que escrevo é um passo rumo ao futuro que escolhi
                   construir — unindo conhecimento, propósito e inovação.&rdquo;
@@ -1322,16 +1225,16 @@ export default function App() {
               </blockquote>
             </div>
 
-            {/* Right: Direct Contact Cards */}
+            {/* Right: Direct Contact Cards (E-mail, WhatsApp, LinkedIn, Instagram) */}
             <div
-              style={{ '--reveal-delay': '100ms' } as React.CSSProperties}
+              style={{ '--reveal-delay': '110ms' } as React.CSSProperties}
               className={`space-y-4 lg:col-span-6 ${getRevealClass('contato')}`}
             >
-              <div className="rounded-2xl border border-[#DCEEFF] bg-[#F9FCFF] p-6">
+              <div className="rounded-2xl border border-[#DCEEFF] bg-[#F9FCFF] p-6 sm:p-8">
                 <h3 className="font-display text-lg font-bold text-[#15115A]">
                   Canais Diretos de Contato
                 </h3>
-                <p className="mt-1 text-xs text-[#526080]">
+                <p className="mt-1.5 text-xs leading-relaxed text-[#526080]">
                   Aberto a colaborações e projetos que envolvam tecnologia, educação e impacto
                   social.
                 </p>
@@ -1343,10 +1246,10 @@ export default function App() {
                       href="mailto:bastos.weeme@gmail.com"
                       className="flex items-center gap-3 text-sm font-medium text-[#15115A] hover:text-[#0878F9] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9]"
                     >
-                      <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#EAF6FF] text-[#0878F9]">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#EAF6FF] text-[#0878F9]">
                         <Mail className="h-4 w-4" />
                       </span>
-                      <span>bastos.weeme@gmail.com</span>
+                      <span className="break-all">bastos.weeme@gmail.com</span>
                     </a>
                     <button
                       type="button"
@@ -1367,40 +1270,38 @@ export default function App() {
                     </button>
                   </div>
 
-                  {/* Telefone */}
+                  {/* WhatsApp / Telefone Pessoal */}
                   <div className="card-interactive flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#E2F0FF] bg-white px-4 py-3.5 hover:border-[#0878F9]/35">
                     <a
-                      href="tel:+5588997204035"
+                      href={WHATSAPP_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Conversar pelo WhatsApp com Wemerson Bastos no número (88) 99720-4035"
                       className="flex items-center gap-3 text-sm font-medium text-[#15115A] hover:text-[#0878F9] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9]"
                     >
-                      <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#EAF6FF] text-[#0878F9]">
-                        <Phone className="h-4 w-4" />
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#EAF6FF] text-[#0878F9]">
+                        <MessageCircle className="h-4 w-4" />
                       </span>
-                      <span className="tabular-nums">(88) 99720-4035</span>
+                      <div>
+                        <span className="block tabular-nums">(88) 99720-4035</span>
+                        <span className="block text-xs text-[#526080]">WhatsApp Direto</span>
+                      </div>
                     </a>
-                    <button
-                      type="button"
-                      onClick={() => handleCopy('(88) 99720-4035', 'phone')}
-                      className="btn-interactive inline-flex items-center gap-1.5 rounded-full bg-[#EAF6FF] px-3.5 py-1.5 text-xs font-semibold text-[#0878F9] hover:bg-[#D6ECFF] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9]"
+                    <a
+                      href={WHATSAPP_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-interactive inline-flex items-center gap-1.5 rounded-full bg-[#0878F9] px-4 py-1.5 text-xs font-semibold text-white hover:bg-[#0663D0] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9]"
                     >
-                      {copiedField === 'phone' ? (
-                        <>
-                          <Check className="h-3.5 w-3.5" />
-                          <span>Copiado</span>
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="h-3.5 w-3.5" />
-                          <span>Copiar</span>
-                        </>
-                      )}
-                    </button>
+                      <span>Conversar no WhatsApp</span>
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
                   </div>
 
                   {/* LinkedIn */}
                   <div className="card-interactive flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#E2F0FF] bg-white px-4 py-3.5 hover:border-[#0878F9]/35">
                     <div className="flex items-center gap-3">
-                      <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#EAF6FF] font-display text-xs font-bold text-[#0878F9]">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#EAF6FF] font-display text-xs font-bold text-[#0878F9]">
                         in
                       </span>
                       <div>
@@ -1409,12 +1310,49 @@ export default function App() {
                       </div>
                     </div>
                     <a
-                      href="https://www.linkedin.com/in/wemerson-bastos-129451252"
+                      href={LINKEDIN_URL}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label="LinkedIn de Wemerson Bastos"
                       className="btn-interactive inline-flex items-center gap-1.5 rounded-full bg-[#0878F9] px-4 py-1.5 text-xs font-semibold text-white hover:bg-[#0663D0] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9]"
                     >
                       <span>Acessar Perfil</span>
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
+                  </div>
+
+                  {/* Instagram */}
+                  <div className="card-interactive flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#E2F0FF] bg-white px-4 py-3.5 hover:border-[#0878F9]/35">
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#EAF6FF] text-[#0878F9]">
+                        <svg
+                          aria-hidden="true"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="h-4 w-4"
+                        >
+                          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                        </svg>
+                      </span>
+                      <div>
+                        <p className="text-sm font-medium text-[#15115A]">Instagram</p>
+                        <p className="text-xs text-[#526080]">@wemerson.bastos7</p>
+                      </div>
+                    </div>
+                    <a
+                      href={INSTAGRAM_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Instagram de Wemerson Bastos"
+                      className="btn-interactive inline-flex items-center gap-1.5 rounded-full bg-[#0878F9] px-4 py-1.5 text-xs font-semibold text-white hover:bg-[#0663D0] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0878F9]"
+                    >
+                      <span>Seguir no Instagram</span>
                       <ExternalLink className="h-3.5 w-3.5" />
                     </a>
                   </div>
@@ -1425,35 +1363,36 @@ export default function App() {
         </div>
       </section>
 
-      {/* VIBRANT BLUE CTA BAR ABOVE FOOTER */}
-      <section className="bg-gradient-to-r from-[#0878F9] to-[#00BFEF] py-10 text-white">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 sm:flex-row">
-          <div className="flex items-center gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/15 font-display text-lg font-bold text-white backdrop-blur-xs">
+      {/* VIBRANT BLUE CTA BAR ABOVE FOOTER (Reorganized after removing Copiar README button) */}
+      <section className="bg-gradient-to-r from-[#0878F9] to-[#00BFEF] py-12 text-white">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 sm:flex-row sm:px-6 lg:px-8">
+          <div className="flex items-center gap-4 text-center sm:text-left">
+            <div className="hidden h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/15 font-display text-lg font-bold text-white backdrop-blur-xs sm:flex">
               wb
             </div>
             <div>
-              <h2 className="font-display text-lg font-bold text-white">
+              <h2 className="font-display text-lg font-bold text-white sm:text-xl">
                 Vamos construir soluções para a educação e tecnologia?
               </h2>
-              <p className="text-xs text-white/90 sm:text-sm">
+              <p className="mt-1 text-xs text-white/90 sm:text-sm">
                 Disponível para parcerias, projetos educacionais, desenvolvimento web e palestras.
               </p>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            <button
-              type="button"
-              onClick={() => setReadmeModalOpen(true)}
-              className="btn-interactive inline-flex items-center gap-2 rounded-full border border-white/80 px-5 py-2.5 text-xs font-semibold text-white hover:bg-white/15 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-interactive inline-flex items-center gap-2 rounded-full border border-white/85 bg-white/10 px-6 py-3 text-xs font-semibold text-white hover:bg-white/20 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
-              <FileText className="h-3.5 w-3.5" />
-              <span>Copiar README do GitHub</span>
-            </button>
+              <MessageCircle className="h-4 w-4" />
+              <span>Falar no WhatsApp</span>
+            </a>
             <a
               href="mailto:bastos.weeme@gmail.com"
-              className="btn-interactive inline-flex items-center justify-center rounded-full bg-white px-6 py-2.5 text-xs font-semibold text-[#0878F9] shadow-sm hover:bg-[#F5FBFF] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="btn-interactive inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-xs font-semibold text-[#0878F9] shadow-sm hover:bg-[#F5FBFF] whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Enviar E-mail
             </a>
@@ -1461,9 +1400,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* 8. DEEP INDIGO FOOTER (#15115A) */}
+      {/* DEEP INDIGO FOOTER (#15115A) */}
       <footer className="bg-[#15115A] pt-16 pb-12 text-white">
-        <div className="mx-auto max-w-6xl px-6">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 pb-12 md:grid-cols-12">
             {/* Brand & Identification */}
             <div className="md:col-span-5">
@@ -1477,14 +1416,35 @@ export default function App() {
                 Professor Pedagogo Especialista · Superintendente da SME de Tauá · Graduando em
                 Análise e Desenvolvimento de Sistemas (Universidade Descomplica).
               </p>
-              <div className="mt-5 flex items-center gap-4 text-xs text-[#00BFEF]">
+              <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-[#00BFEF]">
                 <a
-                  href="https://www.linkedin.com/in/wemerson-bastos-129451252"
+                  href={LINKEDIN_URL}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="LinkedIn de Wemerson Bastos"
                   className="hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   LinkedIn
+                </a>
+                <span aria-hidden="true">·</span>
+                <a
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram de Wemerson Bastos"
+                  className="hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                >
+                  Instagram
+                </a>
+                <span aria-hidden="true">·</span>
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="WhatsApp de Wemerson Bastos"
+                  className="hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                >
+                  WhatsApp
                 </a>
                 <span aria-hidden="true">·</span>
                 <a
@@ -1492,13 +1452,6 @@ export default function App() {
                   className="hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   E-mail
-                </a>
-                <span aria-hidden="true">·</span>
-                <a
-                  href="tel:+5588997204035"
-                  className="hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-                >
-                  (88) 99720-4035
                 </a>
               </div>
             </div>
@@ -1550,98 +1503,40 @@ export default function App() {
               <h3 className="font-display text-xs font-semibold text-[#00BFEF]">Contato</h3>
               <ul className="mt-3 space-y-2 text-xs text-white/80">
                 <li>bastos.weeme@gmail.com</li>
-                <li className="tabular-nums">(88) 99720-4035</li>
+                <li>
+                  <a
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="tabular-nums hover:text-white hover:underline"
+                  >
+                    (88) 99720-4035
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={INSTAGRAM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram de Wemerson Bastos"
+                    className="hover:text-white hover:underline"
+                  >
+                    @wemerson.bastos7
+                  </a>
+                </li>
                 <li>Tauá — Ceará, Brasil</li>
               </ul>
             </div>
           </div>
 
-          <div className="flex flex-col items-start justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/60 sm:flex-row sm:items-center">
+          <div className="border-t border-white/10 pt-8 text-xs text-white/60">
             <p>
               © {new Date().getFullYear()} Wemerson Bastos Evangelista. Apresentação profissional
               construída a partir de informações reais de trajetória acadêmica e profissional.
             </p>
-
-            {/* Controle acessível de movimento */}
-            <button
-              type="button"
-              onClick={() => setMotionEnabled((prev) => !prev)}
-              aria-pressed={!motionEnabled}
-              className="rounded-full border border-white/20 px-3.5 py-1.5 text-[11px] font-medium text-white/80 transition-colors hover:border-white/40 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white whitespace-nowrap shrink-0"
-            >
-              {motionEnabled ? 'Reduzir animações' : 'Ativar animações'}
-            </button>
           </div>
         </div>
       </footer>
-
-      {/* Modal for GitHub Profile README.md inspection & copy */}
-      {readmeModalOpen && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="readme-modal-title"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#15115A]/70 p-4 backdrop-blur-xs"
-        >
-          <div className="flex max-h-[85vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
-            <div className="flex items-center justify-between border-b border-[#E2F0FF] px-6 py-4">
-              <div>
-                <h2
-                  id="readme-modal-title"
-                  className="font-display text-base font-bold text-[#15115A]"
-                >
-                  README.md para Perfil do GitHub
-                </h2>
-                <p className="text-xs text-[#526080]">
-                  O arquivo /README.md do projeto está atualizado com seu link da Vercel e paleta
-                  azul/ciano.
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => setReadmeModalOpen(false)}
-                aria-label="Fechar janela"
-                className="rounded-full p-2 text-[#526080] hover:bg-[#EAF6FF] hover:text-[#0878F9]"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-
-            <div className="overflow-y-auto bg-[#F7FBFF] p-6">
-              <pre className="whitespace-pre-wrap font-mono text-xs leading-relaxed text-[#15115A]">
-                {readmePreviewContent}
-              </pre>
-            </div>
-
-            <div className="flex items-center justify-end gap-3 border-t border-[#E2F0FF] px-6 py-4">
-              <button
-                type="button"
-                onClick={() => handleCopy(readmePreviewContent, 'readme')}
-                className="btn-interactive inline-flex items-center gap-2 rounded-full bg-[#0878F9] px-5 py-2.5 text-xs font-semibold text-white hover:bg-[#0663D0]"
-              >
-                {copiedField === 'readme' ? (
-                  <>
-                    <Check className="h-4 w-4" />
-                    <span>Markdown Copiado!</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="h-4 w-4" />
-                    <span>Copiar Markdown</span>
-                  </>
-                )}
-              </button>
-              <button
-                type="button"
-                onClick={() => setReadmeModalOpen(false)}
-                className="btn-interactive rounded-full border border-[#CBE4FF] px-5 py-2.5 text-xs font-semibold text-[#15115A] hover:bg-[#EAF6FF]"
-              >
-                Fechar
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

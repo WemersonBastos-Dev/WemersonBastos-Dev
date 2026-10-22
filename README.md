@@ -12,11 +12,14 @@
 <a href="https://www.linkedin.com/in/wemerson-bastos-129451252">
   <img src="https://img.shields.io/badge/LinkedIn-Conectar_no_LinkedIn-00BFEF?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
 </a>
+<a href="https://www.instagram.com/wemerson.bastos7/">
+  <img src="https://img.shields.io/badge/Instagram-%40wemerson.bastos7-0878F9?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram de Wemerson Bastos" />
+</a>
 <a href="mailto:bastos.weeme@gmail.com">
   <img src="https://img.shields.io/badge/E--mail-bastos.weeme%40gmail.com-0878F9?style=for-the-badge&logo=gmail&logoColor=white" alt="E-mail" />
 </a>
-<a href="tel:+5588997204035">
-  <img src="https://img.shields.io/badge/Telefone-(88)_99720--4035-15115A?style=for-the-badge&logo=whatsapp&logoColor=white" alt="Telefone" />
+<a href="https://wa.me/5588997204035?text=Ol%C3%A1%2C%20Wemerson!%20Acessei%20seu%20curr%C3%ADculo%20profissional%20e%20gostaria%20de%20conversar%20com%20voc%C3%AA.">
+  <img src="https://img.shields.io/badge/WhatsApp-(88)_99720--4035-15115A?style=for-the-badge&logo=whatsapp&logoColor=white" alt="WhatsApp" />
 </a>
 
 </div>
@@ -132,7 +135,7 @@ Acredito que o futuro da educação está na capacidade de integrar práticas pe
   <ul>
     <li><strong>Plataformas e Jogos Educacionais:</strong> Recursos interativos voltados ao engajamento, personalização e alinhamento à BNCC e metodologias ativas.</li>
     <li><strong>Aplicações Educacionais Inteligentes:</strong> Integração de fundamentos de IA, Machine Learning e modelagem de dados na educação.</li>
-    <li><strong>Desenvolvimento Web & No-Code:</strong> Construção de interfaces acessíveis com HTML, CSS, JavaScript, UX/UI e ferramentas No-code.</li>
+    <li><strong>Desenvolvimento Web & Vibe-Code:</strong> Construção de interfaces acessíveis com HTML, CSS, JavaScript, UX/UI e ferramentas No-code.</li>
     <li><strong>Educação Inclusiva e Corporativa:</strong> Treinamentos corporativos, alfabetização, psicomotricidade e tecnologias assistivas/digitais.</li>
   </ul>
 </details>
@@ -180,8 +183,9 @@ Acredito que o futuro da educação está na capacidade de integrar práticas pe
 | :--- | :--- |
 | **Currículo Profissional (Web)** | [professional-resume-sigma.vercel.app](https://professional-resume-sigma.vercel.app) |
 | **E-mail** | [bastos.weeme@gmail.com](mailto:bastos.weeme@gmail.com) |
-| **Telefone / WhatsApp** | (88) 99720-4035 |
+| **WhatsApp Direto** | [(88) 99720-4035](https://wa.me/5588997204035?text=Ol%C3%A1%2C%20Wemerson!%20Acessei%20seu%20curr%C3%ADculo%20profissional%20e%20gostaria%20de%20conversar%20com%20voc%C3%AA.) |
 | **LinkedIn** | [linkedin.com/in/wemerson-bastos-129451252](https://www.linkedin.com/in/wemerson-bastos-129451252) |
+| **Instagram** | [@wemerson.bastos7](https://www.instagram.com/wemerson.bastos7/) |
 
 <br />
 
